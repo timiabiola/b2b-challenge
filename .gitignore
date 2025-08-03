@@ -1,0 +1,40 @@
+# dependencies
+/enlightened-informatics/node_modules
+/enlightened-informatics/.pnp
+/enlightened-informatics/.pnp.js
+/enlightened-informatics/.yarn/install-state.gz
+
+# testing
+/enlightened-informatics/coverage
+
+# next.js
+/enlightened-informatics/.next/
+/enlightened-informatics/out/
+
+# production
+/enlightened-informatics/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+/enlightened-informatics/npm-debug.log*
+/enlightened-informatics/yarn-debug.log*
+/enlightened-informatics/yarn-error.log*
+
+# local env files
+/enlightened-informatics/.env*.local
+
+# vercel
+/enlightened-informatics/.vercel
+
+# typescript
+/enlightened-informatics/*.tsbuildinfo
+/enlightened-informatics/next-env.d.ts
+
+# claude
+.claude
+
+# logs
+/enlightened-informatics/dev.log

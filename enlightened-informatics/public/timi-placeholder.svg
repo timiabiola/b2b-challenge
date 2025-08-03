@@ -1,0 +1,13 @@
+<svg width="400" height="500" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="500" rx="20" fill="url(#gradient)"/>
+  <circle cx="200" cy="180" r="80" fill="#FFF6D6" opacity="0.9"/>
+  <path d="M200 260C240 260 280 280 280 320V420C280 440 260 460 240 460H160C140 460 120 440 120 420V320C120 280 160 260 200 260Z" fill="#FFF6D6" opacity="0.9"/>
+  <text x="200" y="470" text-anchor="middle" fill="#0B3142" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Timi Abiola</text>
+  <text x="200" y="490" text-anchor="middle" fill="#3EC6FF" font-family="Arial, sans-serif" font-size="14">AI & Informatics Expert</text>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="400" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B174C"/>
+      <stop offset="1" stop-color="#0B3142"/>
+    </linearGradient>
+  </defs>
+</svg>

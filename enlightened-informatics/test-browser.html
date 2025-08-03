@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Browser Connection Test for Enlightened Informatics</h1>
+    
+    <div id="results">
+        <div class="test-result loading">
+            <h3>Testing connections...</h3>
+        </div>
+    </div>
+
+    <h2>Manual Test Options:</h2>
+    <p>Since your browser can't connect to localhost:8081, try these alternatives:</p>
+    
+    <ol>
+        <li>
+            <strong>Use your local IP instead of localhost:</strong><br>
+            <a href="http://127.0.0.1:8081" target="_blank">http://127.0.0.1:8081</a><br>
+            <a href="http://192.168.1.95:8081" target="_blank">http://192.168.1.95:8081</a>
+        </li>
+        
+        <li>
+            <strong>Check browser settings:</strong>
+            <ul>
+                <li>Chrome: Settings → Privacy and security → Site Settings → Additional permissions → Insecure content</li>
+                <li>Safari: Preferences → Privacy → Uncheck "Prevent cross-site tracking"</li>
+            </ul>
+        </li>
+        
+        <li>
+            <strong>Terminal commands to verify server is running:</strong>
+            <pre><code>curl http://localhost:8081/api/health</code></pre>
+            <button onclick="copyCommand('curl http://localhost:8081/api/health')">Copy Command</button>
+        </li>
+        
+        <li>
+            <strong>Try a different port:</strong>
+            <pre><code>cd /Users/timiabiola/EI\ Landing\ Page/enlightened-informatics
+npm run dev:3000</code></pre>
+            <button onclick="copyCommand('cd /Users/timiabiola/EI\\ Landing\\ Page/enlightened-informatics && npm run dev:3000')">Copy Commands</button>
+            <br><br>
+            Then visit: <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
+        </li>
+    </ol>
+
+    <h2>System Checks:</h2>
+    <button onclick="runTests()">Run Connection Tests</button>
+    
+    <script>
+        function copyCommand(cmd) {
+            navigator.clipboard.writeText(cmd);
+            alert('Command copied to clipboard!');
+        }
+
+        async function runTests() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="test-result loading"><h3>Running tests...</h3></div>';
+            
+            const tests = [
+                { url: 'http://localhost:8081/api/health', name: 'Localhost:8081' },
+                { url: 'http://127.0.0.1:8081/api/health', name: '127.0.0.1:8081' },
+                { url: 'http://192.168.1.95:8081/api/health', name: 'Network IP:8081' },
+                { url: 'https://www.google.com', name: 'Internet Connection' }
+            ];
+            
+            let results = '';
+            
+            for (const test of tests) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000);
+                    
+                    const response = await fetch(test.url, { 
+                        signal: controller.signal,
+                        mode: 'no-cors'
+                    });
+                    clearTimeout(timeoutId);
+                    
+                    results += `<div class="test-result success">✅ ${test.name}: Connection possible</div>`;
+                } catch (error) {
+                    if (test.name.includes('Google')) {
+                        results += `<div class="test-result error">❌ ${test.name}: ${error.message}</div>`;
+                    } else {
+                        results += `<div class="test-result error">❌ ${test.name}: Cannot connect (${error.message})</div>`;
+                    }
+                }
+            }
+            
+            resultsDiv.innerHTML = results;
+            
+            // Add diagnosis
+            resultsDiv.innerHTML += `
+                <div class="test-result loading">
+                    <h3>Diagnosis:</h3>
+                    <p>Based on the tests above, here's what might be wrong:</p>
+                    <ul>
+                        <li>If all localhost tests fail: Your browser might be blocking local connections</li>
+                        <li>If Google test fails: Check your internet connection</li>
+                        <li>If only localhost fails: Try using 127.0.0.1 or your network IP instead</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Run tests on load
+        runTests();
+    </script>
+</body>
+</html>
