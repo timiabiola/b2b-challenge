@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { AnimatedBackground } from './AnimatedBackground'
@@ -15,10 +16,10 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       <AnimatedBackground />
       
-      <div className="relative z-10 container mx-auto px-6 py-20">
+      <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div
@@ -72,33 +73,19 @@ export function HeroSection() {
               {/* Glow effect behind image */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/20 to-[#FF2C6D]/20 rounded-2xl blur-3xl" />
               
-              {/* Professional image placeholder */}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#3EC6FF]/30">
-                <img 
-                  src="/timi-placeholder.svg" 
+              {/* Professional image */}
+              <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#3EC6FF]/30 shadow-2xl">
+                <Image 
+                  src="/timi-abiola.jpg" 
                   alt="Timi Abiola - AI & Informatics Expert"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {/* Gradient overlay at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0B3142] to-transparent" />
               </div>
-              
-              {/* Floating elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 bg-[#00F0FF]/20 backdrop-blur-sm rounded-lg p-4 border border-[#00F0FF]/30"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <span className="text-[#00F0FF] font-bold">25% Revenue ↑</span>
-              </motion.div>
-              
-              <motion.div
-                className="absolute -bottom-4 -left-4 bg-[#FF2C6D]/20 backdrop-blur-sm rounded-lg p-4 border border-[#FF2C6D]/30"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-              >
-                <span className="text-[#FF2C6D] font-bold">90 Days</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>

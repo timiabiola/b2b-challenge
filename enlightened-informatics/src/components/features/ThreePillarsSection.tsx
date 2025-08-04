@@ -36,8 +36,8 @@ const itemVariants = {
 
 export function ThreePillarsSection() {
   return (
-    <Section variant="gradient" id="pillars">
-      <div className="max-w-6xl mx-auto">
+    <Section variant="gradient" id="pillars" className="relative">
+      <div className="max-w-6xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -111,6 +111,39 @@ export function ThreePillarsSection() {
               </motion.div>
             )
           })}
+        </motion.div>
+
+        {/* Floating badges */}
+        <motion.div
+          className="absolute top-20 left-10 hidden lg:block"
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <motion.div
+            className="bg-[#00F0FF]/20 backdrop-blur-sm rounded-lg p-4 border border-[#00F0FF]/30"
+            animate={{ y: [0, -10, 0], rotate: [-2, 2, -2] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          >
+            <span className="text-[#00F0FF] font-bold text-lg">2X Monthly Revenue</span>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-32 right-10 hidden lg:block"
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1 }}
+        >
+          <motion.div
+            className="bg-[#FF2C6D]/20 backdrop-blur-sm rounded-lg p-4 border border-[#FF2C6D]/30"
+            animate={{ y: [0, 10, 0], rotate: [2, -2, 2] }}
+            transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+          >
+            <span className="text-[#FF2C6D] font-bold text-lg">90 Days to Transform</span>
+          </motion.div>
         </motion.div>
 
         {/* Bottom CTA */}

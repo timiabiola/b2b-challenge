@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   /* Brand Colors */
@@ -20,6 +22,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Reset for Next.js Image component */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure grid layouts work properly */
+.grid {
+  display: grid !important;
+}
+
+/* Fix for aspect ratio containers */
+[class*="aspect-"] {
+  position: relative;
+}
+
+[class*="aspect-"] > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @layer utilities {
