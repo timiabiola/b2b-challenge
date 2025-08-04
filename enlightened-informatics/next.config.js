@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: [],
-  },
+  // Remove invalid experimental option
 }
 
 module.exports = nextConfig

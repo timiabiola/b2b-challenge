@@ -5,7 +5,6 @@ import "./globals.css";
 import { SEO_METADATA } from "@/lib/constants";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { FacebookPixel } from "@/components/analytics/FacebookPixel";
-import { Header } from "@/components/layout/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -69,7 +68,6 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_FB_PIXEL_ID && (
           <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
         )}
-        <Header />
         {children}
         <Toaster 
           position="bottom-right"

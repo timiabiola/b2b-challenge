@@ -18,7 +18,7 @@ export const COMPANY_INFO = {
 
 export const HERO_CONTENT = {
   headline: 'Ready to Transform Your Business with AI & Data?',
-  subheadline: "I'll show you exactly how to break through growth barriers, automate soul-draining processes, and leverage your data to double your monthly revenue in 90 days—without the tech overwhelm.",
+  subheadline: "I'll show you exactly how to break through growth barriers, automate soul-draining processes, and leverage your data to double your monthly revenue by the end of this quarter—without the tech overwhelm.",
   ctaText: 'Yes, Show Me How →',
 } as const
 
@@ -39,7 +39,7 @@ export const THREE_PILLARS = [
     id: 'implementation-plan',
     title: 'Your Revenue-Doubling Roadmap',
     icon: 'Rocket',
-    description: "Forget those dusty strategic plans. You'll get a step-by-step blueprint designed to double your monthly revenue in 90 days. Every action is data-backed and battle-tested across industries.",
+    description: "Forget those dusty strategic plans. You'll get a step-by-step blueprint designed to double your monthly revenue by the end of this quarter. Every action is data-backed and battle-tested across industries.",
   },
   {
     id: 'xiyah-system',
@@ -80,6 +80,6 @@ export const FORM_SUCCESS_MESSAGE = "Awesome! Check your phone—I'll text you w
 
 export const SEO_METADATA = {
   title: 'AI & Business Automation Consulting | Enlightened Informatics | Timi Abiola',
-  description: 'Transform your business with AI automation and data-driven strategies. Get a custom plan to double your monthly revenue in 90 days. Free growth analysis from informatics expert Timi Abiola.',
+  description: 'Transform your business with AI automation and data-driven strategies. Get a custom plan to double your monthly revenue by quarter\'s end. Free growth analysis from informatics expert Timi Abiola.',
   keywords: 'AI consulting, business automation, data strategy, growth consulting, Timi Abiola, Enlightened Informatics',
 } as const

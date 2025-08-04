@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
 import { PROCESS_STEPS } from '@/lib/constants'
 import { CheckCircle } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 export function ProcessTimelineSection() {
   return (
@@ -33,6 +34,27 @@ export function ProcessTimelineSection() {
           <p className="text-xl text-white/80">
             Simple. Strategic. And it starts today.
           </p>
+          
+          {/* Animated badges */}
+          <div className="flex justify-center gap-4 mt-8">
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Badge variant="cyan" className="text-lg px-4 py-2">
+                2X Revenue ↑
+              </Badge>
+            </motion.div>
+            
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+            >
+              <Badge variant="magenta" className="text-lg px-4 py-2">
+                90 Days
+              </Badge>
+            </motion.div>
+          </div>
         </motion.div>
 
         <div className="relative">

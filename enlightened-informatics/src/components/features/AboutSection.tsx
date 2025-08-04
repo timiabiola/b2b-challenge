@@ -103,7 +103,7 @@ export function AboutSection() {
                 
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-white/80">Monthly Revenue Growth</span>
+                    <span className="text-white/80">Revenue Multiplier</span>
                     <span className="text-2xl font-bold text-[#00F0FF]">2X</span>
                   </div>
                   <div className="flex justify-between items-center">
