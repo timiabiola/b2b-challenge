@@ -18,14 +18,14 @@ const stats = [
     icon: Calendar,
     label: 'Time Frame',
     value: '90 Days',
-    description: 'See results this quarter',
+    description: 'After 90 days of working together',
     variant: 'magenta' as const,
   },
   {
     icon: Clock,
-    label: 'Time Saved',
-    value: '20+ Hours',
-    description: 'Freed up every week',
+    label: 'Time Saved Via Automation',
+    value: '10-20 Hours',
+    description: 'Streamline lead generation & conversion',
     variant: 'accent' as const,
   },
 ]
