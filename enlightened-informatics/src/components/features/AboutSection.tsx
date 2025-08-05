@@ -4,6 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
 import { ABOUT_CONTENT } from '@/lib/constants'
+import { Badge } from '@/components/ui/badge'
 
 export function AboutSection() {
   return (
@@ -101,24 +102,41 @@ export function AboutSection() {
               <div className="bg-gradient-to-br from-[#00F0FF]/10 to-[#FF2C6D]/10 backdrop-blur-sm rounded-2xl p-8 border border-[#3EC6FF]/30">
                 <h3 className="text-2xl font-bold text-[#FFF6D6] mb-6">The Enlightened Difference</h3>
                 
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Revenue Multiplier</span>
-                    <span className="text-2xl font-bold text-[#00F0FF]">2X</span>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-3">
+                    <Badge className="h-8 w-8 rounded-full bg-[#00F0FF] text-[#0B3142] hover:bg-[#00F0FF] flex items-center justify-center font-bold text-sm">
+                      1
+                    </Badge>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-semibold text-white">Enlightened Analysis</h4>
+                      <p className="text-sm text-white/70 mt-1">Data-driven constraint identification</p>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Implementation Time</span>
-                    <span className="text-2xl font-bold text-[#FF2C6D]">90 Days</span>
+                  
+                  <div className="flex items-start gap-3">
+                    <Badge className="h-8 w-8 rounded-full bg-[#FF2C6D] text-white hover:bg-[#FF2C6D] flex items-center justify-center font-bold text-sm">
+                      2
+                    </Badge>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-semibold text-white">Implementation Plan</h4>
+                      <p className="text-sm text-white/70 mt-1">90-day revenue roadmap</p>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Hours Saved Weekly</span>
-                    <span className="text-2xl font-bold text-[#3EC6FF]">20+</span>
+                  
+                  <div className="flex items-start gap-3">
+                    <Badge className="h-8 w-8 rounded-full bg-[#3EC6FF] text-[#0B3142] hover:bg-[#3EC6FF] flex items-center justify-center font-bold text-sm">
+                      3
+                    </Badge>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-semibold text-white">Xiyah, the Discerning</h4>
+                      <p className="text-sm text-white/70 mt-1">Automated lead qualification system</p>
+                    </div>
                   </div>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-[#3EC6FF]/20">
-                  <p className="text-sm text-white/70 italic">
-                    &ldquo;We don&apos;t just consult. We implement.&rdquo;
+                  <p className="text-sm text-white/70 italic text-center">
+                    Enlightened Informatics&apos; Proven Pillars of Profit
                   </p>
                 </div>
               </div>
