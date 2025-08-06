@@ -1,40 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
-/enlightened-informatics/node_modules
-/enlightened-informatics/.pnp
-/enlightened-informatics/.pnp.js
-/enlightened-informatics/.yarn/install-state.gz
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # testing
-/enlightened-informatics/coverage
+/coverage
 
 # next.js
-/enlightened-informatics/.next/
-/enlightened-informatics/out/
+/.next/
+/out/
 
 # production
-/enlightened-informatics/build
+/build
 
 # misc
 .DS_Store
 *.pem
 
 # debug
-/enlightened-informatics/npm-debug.log*
-/enlightened-informatics/yarn-debug.log*
-/enlightened-informatics/yarn-error.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# local env files
-/enlightened-informatics/.env*.local
+# env files (can opt-in for committing if needed)
+.env*
 
 # vercel
-/enlightened-informatics/.vercel
+.vercel
 
 # typescript
-/enlightened-informatics/*.tsbuildinfo
-/enlightened-informatics/next-env.d.ts
-
-# claude
-.claude
-
-# logs
-/enlightened-informatics/dev.log
+*.tsbuildinfo
+next-env.d.ts
