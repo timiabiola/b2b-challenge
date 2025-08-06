@@ -39,6 +39,7 @@ export function LeadCaptureSection() {
     handleSubmit,
     formState: { errors },
     reset,
+    trigger,
   } = useForm<LeadFormData>({
     resolver: zodResolver(formSchema),
   })
@@ -196,9 +197,19 @@ export function LeadCaptureSection() {
 
                 {/* Submit Button */}
                 <Button
-                  type="submit"
+                  type="button"
                   size="lg"
                   className="w-full text-lg py-6"
+                  onClick={async () => {
+                    // Validate form first
+                    const isValid = await trigger();
+                    if (isValid) {
+                      // Submit form data in background
+                      await handleSubmit(onSubmit)();
+                      // Open external assessment
+                      window.open('https://timi-ubvro9j7.scoreapp.com/', '_blank');
+                    }
+                  }}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -207,7 +218,7 @@ export function LeadCaptureSection() {
                       Submitting...
                     </>
                   ) : (
-                    'Get My Free Growth Analysis →'
+                    'Get My Growth Constraint Assessment →'
                   )}
                 </Button>
 

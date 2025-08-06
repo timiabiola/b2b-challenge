@@ -56,6 +56,37 @@ export async function POST(request: NextRequest) {
       console.log('GHL not configured, logging submission:', ghlPayload)
     }
 
+    // Send to n8n webhook for internal communication
+    if (process.env.N8N_WEBHOOK_URL) {
+      try {
+        const n8nPayload = {
+          submissionId: data.submissionId,
+          timestamp: data.timestamp,
+          phone: data.phone,
+          industry: data.industry,
+          processToAutomate: data.processToAutomate,
+          decisionAuthority: data.decisionAuthority,
+          source: 'landing-page',
+          formType: 'lead-capture'
+        }
+
+        const n8nResponse = await fetch(process.env.N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(n8nPayload)
+        })
+
+        if (!n8nResponse.ok) {
+          console.error('n8n webhook failed:', await n8nResponse.text())
+        }
+      } catch (n8nError) {
+        console.error('n8n webhook error:', n8nError)
+        // Don't fail the request if webhook fails
+      }
+    }
+
     // You could also save to a database here as a backup
     // await saveToDatabase(data)
 
