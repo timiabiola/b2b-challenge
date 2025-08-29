@@ -44,15 +44,15 @@ export function StatsSection() {
           <Badge variant="outline" className="mb-4">
             Proven Results
           </Badge>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
             What You Can Expect
           </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
             Our clients achieve these results in just 90 days
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -64,7 +64,7 @@ export function StatsSection() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/10 to-[#FF2C6D]/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <div className="relative bg-[#0B3142]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#3EC6FF]/20 hover:border-[#3EC6FF]/40 transition-colors">
+                <div className="relative bg-[#0B3142]/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-[#3EC6FF]/20 hover:border-[#3EC6FF]/40 transition-colors">
                   <div className="flex items-center justify-between mb-4">
                     <stat.icon className="w-8 h-8 text-[#3EC6FF]" />
                     <Badge variant={stat.variant}>
@@ -72,7 +72,7 @@ export function StatsSection() {
                     </Badge>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-[#FFF6D6] mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#FFF6D6] mb-2">
                     {stat.label}
                   </h3>
                   

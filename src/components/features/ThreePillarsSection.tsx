@@ -45,16 +45,16 @@ export function ThreePillarsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-5xl font-bold text-[#FFF6D6] mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
             The Three Pillars of Your Transformation
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto">
             Skip the frameworks—here&apos;s your 90-day revenue-doubling roadmap.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -88,7 +88,7 @@ export function ThreePillarsSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-[#FFF6D6]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6]">
                       {pillar.title}
                     </h3>
 

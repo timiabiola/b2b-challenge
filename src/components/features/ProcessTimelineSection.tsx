@@ -27,10 +27,10 @@ export function ProcessTimelineSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-5xl font-bold text-[#FFF6D6] mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
             Your Journey to 2X Revenue
           </h2>
-          <p className="text-xl text-white/80">
+          <p className="text-base sm:text-lg lg:text-xl text-white/80">
             Simple. Strategic. And it starts today.
           </p>
         </motion.div>

@@ -228,15 +228,15 @@ export function LeadCaptureSection() {
             {/* Gradient shadow */}
             <div className="absolute -inset-1 bg-gradient-to-r from-[#00F0FF] to-[#FF2C6D] rounded-2xl blur-lg opacity-30" />
             
-            <div className="relative bg-[#0B3142] rounded-2xl p-8 md:p-10 border border-[#3EC6FF]/20">
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-4">
+            <div className="relative bg-[#0B3142] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-[#3EC6FF]/20">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
                 Ready to Transform? Let&apos;s Talk.
               </h2>
-              <p className="text-lg text-white/80 mb-8">
+              <p className="text-base sm:text-lg text-white/80 mb-6 sm:mb-8">
                 Tell me about your biggest challenge, and I&apos;ll show you exactly how to solve it.
               </p>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                 {/* First Name and Last Name */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -247,7 +247,7 @@ export function LeadCaptureSection() {
                       id="firstName"
                       type="text"
                       placeholder="John"
-                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
+                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20 h-12 text-base"
                       {...register('firstName')}
                     />
                     {errors.firstName && (
@@ -262,7 +262,7 @@ export function LeadCaptureSection() {
                       id="lastName"
                       type="text"
                       placeholder="Doe"
-                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
+                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20 h-12 text-base"
                       {...register('lastName')}
                     />
                     {errors.lastName && (
@@ -367,7 +367,7 @@ export function LeadCaptureSection() {
                       {processOptions.map((option) => (
                         <div 
                           key={option.id} 
-                          className="flex items-center space-x-3 p-2 rounded-lg hover:bg-[#3EC6FF]/5 transition-all duration-200 group"
+                          className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/5 transition-all duration-200 group min-h-[44px]"
                         >
                           <Checkbox
                             id={option.id}
@@ -410,19 +410,19 @@ export function LeadCaptureSection() {
                       setSelectedDecisionAuthority(value)
                       setValue('decisionAuthority', value as 'yes' | 'no' | 'other')
                     }}>
-                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors">
+                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors min-h-[44px]">
                       <RadioGroupItem value="yes" id="yes" className="border-[#3EC6FF] text-[#00F0FF]" />
                       <Label htmlFor="yes" className="text-white cursor-pointer flex-1">
                         Yes, I can make financial decisions for my organization
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors">
+                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors min-h-[44px]">
                       <RadioGroupItem value="no" id="no" className="border-[#3EC6FF] text-[#00F0FF]" />
                       <Label htmlFor="no" className="text-white cursor-pointer flex-1">
                         No, I need to consult with others first
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors">
+                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors min-h-[44px]">
                       <RadioGroupItem value="other" id="other" className="border-[#3EC6FF] text-[#00F0FF]" />
                       <Label htmlFor="other" className="text-white cursor-pointer flex-1">
                         It&apos;s complicated (I&apos;ll explain)
@@ -439,7 +439,7 @@ export function LeadCaptureSection() {
                   <Button
                     type="submit"
                     size="default"
-                    className="text-base px-8 py-2.5 h-auto font-semibold min-w-[200px]"
+                    className="text-base px-8 py-3 h-auto font-semibold min-w-[200px] w-full sm:w-auto min-h-[44px]"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

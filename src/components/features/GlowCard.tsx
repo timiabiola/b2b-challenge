@@ -25,7 +25,7 @@ export function GlowCard({ children, title, className }: GlowCardProps) {
           </CardTitle>
         </CardHeader>
       )}
-      <CardContent className="relative z-10 text-white/90">
+      <CardContent className="relative z-10 text-white/90 p-4 sm:p-6">
         {children}
       </CardContent>
     </Card>
