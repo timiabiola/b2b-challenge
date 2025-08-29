@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const data: LeadSubmission = await request.json()
     
     // Validate required fields
-    if (!data.phone || !data.industry || !data.processToAutomate || !data.decisionAuthority) {
+    if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.position || !data.industry || !data.processesToAutomate || !data.decisionAuthority) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -19,13 +19,14 @@ export async function POST(request: NextRequest) {
     // Prepare GHL payload
     const ghlPayload = {
       phone: formattedPhone,
-      email: `lead-${data.submissionId}@enlightenedinformatics.com`, // Placeholder email
-      first_name: 'New',
-      last_name: 'Lead',
+      email: data.email,
+      first_name: data.firstName,
+      last_name: data.lastName,
       tags: ['website-lead', 'landing-page'],
       custom_fields: {
+        position: data.position,
         industry: data.industry,
-        process_to_automate: data.processToAutomate,
+        process_to_automate: data.processesToAutomate.join(', '),
         decision_authority: data.decisionAuthority,
         submission_id: data.submissionId,
         submission_timestamp: data.timestamp,
@@ -62,9 +63,13 @@ export async function POST(request: NextRequest) {
         const n8nPayload = {
           submissionId: data.submissionId,
           timestamp: data.timestamp,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
           phone: data.phone,
+          position: data.position,
           industry: data.industry,
-          processToAutomate: data.processToAutomate,
+          processesToAutomate: data.processesToAutomate,
           decisionAuthority: data.decisionAuthority,
           source: 'landing-page',
           formType: 'lead-capture'

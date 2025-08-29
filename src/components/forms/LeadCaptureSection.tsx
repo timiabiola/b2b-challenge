@@ -10,11 +10,9 @@ import { Section } from '@/components/layout/Section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { FORM_SUCCESS_MESSAGE } from '@/lib/constants'
 import type { LeadFormData } from '@/types'
 import { Loader2 } from 'lucide-react'
 
@@ -75,9 +73,7 @@ export function LeadCaptureSection() {
     handleSubmit,
     formState: { errors },
     reset,
-    trigger,
     setValue,
-    watch,
   } = useForm<LeadFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -137,7 +133,7 @@ export function LeadCaptureSection() {
       });
 
       // Also send to our API endpoint (if it exists)
-      const response = await fetch('/api/submit-lead', {
+      await fetch('/api/submit-lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

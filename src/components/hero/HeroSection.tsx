@@ -62,7 +62,7 @@ export function HeroSection() {
                 size="default" 
                 variant="secondary"
                 onClick={() => {
-                  trackCTAClick('growth-assessment')
+                  trackCTAClick('growth-assessment', 'hero-section')
                   window.open('https://timi-ubvro9j7.scoreapp.com/', '_blank')
                 }}
                 className="text-base px-6 py-2.5 h-auto font-semibold"

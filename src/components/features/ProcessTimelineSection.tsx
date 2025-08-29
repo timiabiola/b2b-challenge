@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
 import { PROCESS_STEPS } from '@/lib/constants'
 import { CheckCircle } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
 
 export function ProcessTimelineSection() {
   return (

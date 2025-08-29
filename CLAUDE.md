@@ -1,374 +1,332 @@
-# CLAUDE.md - Enlightened Informatics Landing Page Project Guide
+# Claude Code Configuration - SPARC Development Environment
+
+## 🚨 CRITICAL: CONCURRENT EXECUTION & FILE MANAGEMENT
+
+**ABSOLUTE RULES**:
+1. ALL operations MUST be concurrent/parallel in a single message
+2. **NEVER save working files, text/mds and tests to the root folder**
+3. ALWAYS organize files in appropriate subdirectories
+4. **USE CLAUDE CODE'S TASK TOOL** for spawning agents concurrently, not just MCP
+
+### ⚡ GOLDEN RULE: "1 MESSAGE = ALL RELATED OPERATIONS"
+
+**MANDATORY PATTERNS:**
+- **TodoWrite**: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)
+- **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full instructions
+- **File operations**: ALWAYS batch ALL reads/writes/edits in ONE message
+- **Bash commands**: ALWAYS batch ALL terminal operations in ONE message
+- **Memory operations**: ALWAYS batch ALL memory store/retrieve in ONE message
+
+### 🎯 CRITICAL: Claude Code Task Tool for Agent Execution
+
+**Claude Code's Task tool is the PRIMARY way to spawn agents:**
+```javascript
+// ✅ CORRECT: Use Claude Code's Task tool for parallel agent execution
+[Single Message]:
+  Task("Research agent", "Analyze requirements and patterns...", "researcher")
+  Task("Coder agent", "Implement core features...", "coder")
+  Task("Tester agent", "Create comprehensive tests...", "tester")
+  Task("Reviewer agent", "Review code quality...", "reviewer")
+  Task("Architect agent", "Design system architecture...", "system-architect")
+```
+
+**MCP tools are ONLY for coordination setup:**
+- `mcp__claude-flow__swarm_init` - Initialize coordination topology
+- `mcp__claude-flow__agent_spawn` - Define agent types for coordination
+- `mcp__claude-flow__task_orchestrate` - Orchestrate high-level workflows
+
+### 📁 File Organization Rules
+
+**NEVER save to root folder. Use these directories:**
+- `/src` - Source code files
+- `/tests` - Test files
+- `/docs` - Documentation and markdown files
+- `/config` - Configuration files
+- `/scripts` - Utility scripts
+- `/examples` - Example code
 
 ## Project Overview
-You are helping build a high-converting landing page for Enlightened Informatics, an AI and automation consulting firm led by Timi Abiola. This document contains all essential information needed to maintain consistency across Claude Code sessions.
 
-### Brand Identity
-- **Company**: Enlightened Informatics
-- **Founder**: Timi Abiola
-- **Tagline**: "Transform Your Business with AI & Data"
-- **Value Proposition**: Increase revenue by 25% in 90 days through AI automation and data-driven strategies
+This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) methodology with Claude-Flow orchestration for systematic Test-Driven Development.
 
-## Brand Voice (CRITICAL - Always Apply)
-- **Conversational**: Use "you" and "I", contractions, rhetorical questions
-- **Empathetic**: Acknowledge pain points before offering solutions
-- **Motivational**: Balance understanding with strong calls to action
-- **Educational**: Provide value in every section
-- **Authentic**: Share real experiences and results
+## SPARC Commands
 
-### Voice Examples:
-❌ **DON'T**: "Our consulting services provide comprehensive solutions."  
-✅ **DO**: "Listen, I get it. You're drowning in data but starving for insights."
+### Core Commands
+- `npx claude-flow sparc modes` - List available modes
+- `npx claude-flow sparc run <mode> "<task>"` - Execute specific mode
+- `npx claude-flow sparc tdd "<feature>"` - Run complete TDD workflow
+- `npx claude-flow sparc info <mode>` - Get mode details
 
-❌ **DON'T**: "Submit your information for a consultation."  
-✅ **DO**: "Tell me about your biggest challenge, and I'll show you exactly how to solve it."
+### Batchtools Commands
+- `npx claude-flow sparc batch <modes> "<task>"` - Parallel execution
+- `npx claude-flow sparc pipeline "<task>"` - Full pipeline processing
+- `npx claude-flow sparc concurrent <mode> "<tasks-file>"` - Multi-task processing
 
-## Brand Colors (Use These Exact Values)
-```css
-/* Primary Colors */
---deep-navy-blue: #0B3142;     /* Primary backgrounds, cards */
---deep-purple: #2B174C;         /* Gradient backgrounds */
---electric-cyan: #00F0FF;       /* Primary CTAs, highlights */
---vibrant-magenta: #FF2C6D;     /* Secondary CTAs, hover states */
---soft-cream: #FFF6D6;          /* Headlines, featured text */
---accent-blue: #3EC6FF;         /* Subtle accents, icons */
---pure-white: #FFFFFF;          /* Body text */
---dark-gray: #1A1A1A;           /* Text on light backgrounds */
+### Build Commands
+- `npm run build` - Build project
+- `npm run test` - Run tests
+- `npm run lint` - Linting
+- `npm run typecheck` - Type checking
+
+## SPARC Workflow Phases
+
+1. **Specification** - Requirements analysis (`sparc run spec-pseudocode`)
+2. **Pseudocode** - Algorithm design (`sparc run spec-pseudocode`)
+3. **Architecture** - System design (`sparc run architect`)
+4. **Refinement** - TDD implementation (`sparc tdd`)
+5. **Completion** - Integration (`sparc run integration`)
+
+## Code Style & Best Practices
+
+- **Modular Design**: Files under 500 lines
+- **Environment Safety**: Never hardcode secrets
+- **Test-First**: Write tests before implementation
+- **Clean Architecture**: Separate concerns
+- **Documentation**: Keep updated
+
+## 🚀 Available Agents (54 Total)
+
+### Core Development
+`coder`, `reviewer`, `tester`, `planner`, `researcher`
+
+### Swarm Coordination
+`hierarchical-coordinator`, `mesh-coordinator`, `adaptive-coordinator`, `collective-intelligence-coordinator`, `swarm-memory-manager`
+
+### Consensus & Distributed
+`byzantine-coordinator`, `raft-manager`, `gossip-coordinator`, `consensus-builder`, `crdt-synchronizer`, `quorum-manager`, `security-manager`
+
+### Performance & Optimization
+`perf-analyzer`, `performance-benchmarker`, `task-orchestrator`, `memory-coordinator`, `smart-agent`
+
+### GitHub & Repository
+`github-modes`, `pr-manager`, `code-review-swarm`, `issue-tracker`, `release-manager`, `workflow-automation`, `project-board-sync`, `repo-architect`, `multi-repo-swarm`
+
+### SPARC Methodology
+`sparc-coord`, `sparc-coder`, `specification`, `pseudocode`, `architecture`, `refinement`
+
+### Specialized Development
+`backend-dev`, `mobile-dev`, `ml-developer`, `cicd-engineer`, `api-docs`, `system-architect`, `code-analyzer`, `base-template-generator`
+
+### Testing & Validation
+`tdd-london-swarm`, `production-validator`
+
+### Migration & Planning
+`migration-planner`, `swarm-init`
+
+## 🎯 Claude Code vs MCP Tools
+
+### Claude Code Handles ALL EXECUTION:
+- **Task tool**: Spawn and run agents concurrently for actual work
+- File operations (Read, Write, Edit, MultiEdit, Glob, Grep)
+- Code generation and programming
+- Bash commands and system operations
+- Implementation work
+- Project navigation and analysis
+- TodoWrite and task management
+- Git operations
+- Package management
+- Testing and debugging
+
+### MCP Tools ONLY COORDINATE:
+- Swarm initialization (topology setup)
+- Agent type definitions (coordination patterns)
+- Task orchestration (high-level planning)
+- Memory management
+- Neural features
+- Performance tracking
+- GitHub integration
+
+**KEY**: MCP coordinates the strategy, Claude Code's Task tool executes with real agents.
+
+## 🚀 Quick Setup
+
+```bash
+# Add Claude Flow MCP server
+claude mcp add claude-flow npx claude-flow@alpha mcp start
 ```
 
-## Technical Stack
+## MCP Tool Categories
 
-### Core Technologies
-- **Framework**: Next.js 14+ (App Router)
-- **UI Library**: React 18.3+
-- **Language**: TypeScript 5.3+
-- **Styling**: Tailwind CSS 3.4+ with JIT
-- **Components**: shadcn/ui v4
-- **Forms**: React Hook Form + Zod
-- **Notifications**: Sonner (toast)
-- **IDs**: crypto.randomUUID()
+### Coordination
+`swarm_init`, `agent_spawn`, `task_orchestrate`
 
-### File Structure
-```
-src/
-├── app/
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── api/
-│       └── submit-lead/
-│           └── route.ts
-├── components/
-│   ├── layout/
-│   ├── hero/
-│   ├── features/
-│   ├── forms/
-│   ├── social-proof/
-│   └── ui/           # shadcn/ui components
-├── lib/
-│   ├── utils.ts
-│   ├── constants.ts
-│   └── hooks/
-└── types/
-    └── index.ts
-```
+### Monitoring
+`swarm_status`, `agent_list`, `agent_metrics`, `task_status`, `task_results`
 
-## Component Implementation Guidelines
+### Memory & Neural
+`memory_usage`, `neural_status`, `neural_train`, `neural_patterns`
 
-### 1. Button Styling (Primary CTA)
-```tsx
-import { Button } from "@/components/ui/button"
+### GitHub Integration
+`github_swarm`, `repo_analyze`, `pr_enhance`, `issue_triage`, `code_review`
 
-// Primary CTA - Electric Cyan to Magenta
-<Button 
-  className="bg-[#00F0FF] text-[#0B3142] hover:bg-[#FF2C6D] hover:text-white transition-all duration-300 font-semibold"
-  size="lg"
->
-  Get My Free Growth Analysis →
-</Button>
+### System
+`benchmark_run`, `features_detect`, `swarm_monitor`
 
-// Secondary CTA - Magenta to Cyan
-<Button 
-  className="bg-[#FF2C6D] text-white hover:bg-[#00F0FF] hover:text-[#0B3142] transition-all duration-300"
-  variant="outline"
->
-  Learn More
-</Button>
-```
+## 🚀 Agent Execution Flow with Claude Code
 
-### 2. Card Component Pattern
-```tsx
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+### The Correct Pattern:
 
-<Card className="relative overflow-hidden bg-[#0B3142] border border-[#3EC6FF]/20 hover:border-[#00F0FF]/50 transition-all duration-300">
-  <div className="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/10 to-[#FF2C6D]/10" />
-  <CardHeader>
-    <CardTitle className="text-[#FFF6D6] text-xl font-bold">
-      {title}
-    </CardTitle>
-  </CardHeader>
-  <CardContent className="text-white/90">
-    {content}
-  </CardContent>
-</Card>
-```
+1. **Optional**: Use MCP tools to set up coordination topology
+2. **REQUIRED**: Use Claude Code's Task tool to spawn agents that do actual work
+3. **REQUIRED**: Each agent runs hooks for coordination
+4. **REQUIRED**: Batch all operations in single messages
 
-### 3. Form Field Styling
-```tsx
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+### Example Full-Stack Development:
 
-// Input field pattern
-<div className="space-y-2">
-  <Label htmlFor="phone" className="text-[#FFF6D6]">
-    Your Best Phone Number*
-  </Label>
-  <Input 
-    id="phone"
-    type="tel"
-    className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
-    placeholder="(555) 123-4567"
-  />
-</div>
-
-// Textarea pattern
-<Textarea 
-  className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20 min-h-[120px]"
-  placeholder="Tell me about the repetitive tasks killing your productivity..."
-/>
-```
-
-### 4. Section Container Pattern
-```tsx
-// Dark section with gradient
-<section className="relative py-20 overflow-hidden">
-  <div className="absolute inset-0 bg-gradient-to-br from-[#2B174C] to-[#0B3142]" />
-  <div className="relative z-10 container mx-auto px-6">
-    {/* Content */}
-  </div>
-</section>
-
-// Light section (rare use)
-<section className="py-20 bg-[#FFF6D6]/5">
-  <div className="container mx-auto px-6">
-    {/* Content */}
-  </div>
-</section>
-```
-
-## Content Sections Requirements
-
-### 1. Hero Section
-- **Headline**: "Ready to Transform Your Business with AI & Data?"
-- **Subheadline**: Uses Timi's conversational voice
-- **CTA**: "Yes, Show Me How →"
-- **Image**: Professional photo of Timi
-- **Background**: Animated gradient with neural network visualization
-
-### 2. About Section
-- **Must Include**: Timi's informatics background (NOT nursing focus)
-- **Tone**: Conversational, empathetic, solution-focused
-- **Key Message**: "We implement, not just advise"
-
-### 3. Three Pillars
-1. **Enlightened Analysis**: Find hidden growth levers
-2. **Implementation Plan**: 90-day revenue roadmap
-3. **Xiyah System**: Custom AI automation
-
-### 4. Lead Form Fields (EXACT REQUIREMENTS)
-```tsx
-interface LeadFormData {
-  phone: string;         // Required, tel input
-  industry: string;      // Required, text input
-  processToAutomate: string; // Required, textarea
-  decisionAuthority: 'yes' | 'no' | 'other'; // Required, radio
-}
-```
-
-### 5. Form Submission
-```tsx
-// API Route: /api/submit-lead
-const handleSubmit = async (data: LeadFormData) => {
-  const response = await fetch('/api/submit-lead', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...data,
-      submissionId: crypto.randomUUID(),
-      timestamp: new Date().toISOString()
-    })
-  });
+```javascript
+// Single message with all agent spawning via Claude Code's Task tool
+[Parallel Agent Execution]:
+  Task("Backend Developer", "Build REST API with Express. Use hooks for coordination.", "backend-dev")
+  Task("Frontend Developer", "Create React UI. Coordinate with backend via memory.", "coder")
+  Task("Database Architect", "Design PostgreSQL schema. Store schema in memory.", "code-analyzer")
+  Task("Test Engineer", "Write Jest tests. Check memory for API contracts.", "tester")
+  Task("DevOps Engineer", "Setup Docker and CI/CD. Document in memory.", "cicd-engineer")
+  Task("Security Auditor", "Review authentication. Report findings via hooks.", "reviewer")
   
-  if (response.ok) {
-    toast.success("Awesome! Check your phone—I'll text you within 24 hours to schedule your free analysis.");
-  }
-};
-```
-
-## Go High Level Integration
-```typescript
-// app/api/submit-lead/route.ts
-export async function POST(request: Request) {
-  const data = await request.json();
+  // All todos batched together
+  TodoWrite { todos: [...8-10 todos...] }
   
-  // Forward to GHL
-  const ghlResponse = await fetch(process.env.GHL_WEBHOOK_URL!, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.GHL_API_KEY}`
-    },
-    body: JSON.stringify({
-      phone: data.phone,
-      custom_fields: {
-        industry: data.industry,
-        process_to_automate: data.processToAutomate,
-        decision_authority: data.decisionAuthority
-      }
-    })
-  });
+  // All file operations together
+  Write "backend/server.js"
+  Write "frontend/App.jsx"
+  Write "database/schema.sql"
+```
+
+## 📋 Agent Coordination Protocol
+
+### Every Agent Spawned via Task Tool MUST:
+
+**1️⃣ BEFORE Work:**
+```bash
+npx claude-flow@alpha hooks pre-task --description "[task]"
+npx claude-flow@alpha hooks session-restore --session-id "swarm-[id]"
+```
+
+**2️⃣ DURING Work:**
+```bash
+npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
+npx claude-flow@alpha hooks notify --message "[what was done]"
+```
+
+**3️⃣ AFTER Work:**
+```bash
+npx claude-flow@alpha hooks post-task --task-id "[task]"
+npx claude-flow@alpha hooks session-end --export-metrics true
+```
+
+## 🎯 Concurrent Execution Examples
+
+### ✅ CORRECT WORKFLOW: MCP Coordinates, Claude Code Executes
+
+```javascript
+// Step 1: MCP tools set up coordination (optional, for complex tasks)
+[Single Message - Coordination Setup]:
+  mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 6 }
+  mcp__claude-flow__agent_spawn { type: "researcher" }
+  mcp__claude-flow__agent_spawn { type: "coder" }
+  mcp__claude-flow__agent_spawn { type: "tester" }
+
+// Step 2: Claude Code Task tool spawns ACTUAL agents that do the work
+[Single Message - Parallel Agent Execution]:
+  // Claude Code's Task tool spawns real agents concurrently
+  Task("Research agent", "Analyze API requirements and best practices. Check memory for prior decisions.", "researcher")
+  Task("Coder agent", "Implement REST endpoints with authentication. Coordinate via hooks.", "coder")
+  Task("Database agent", "Design and implement database schema. Store decisions in memory.", "code-analyzer")
+  Task("Tester agent", "Create comprehensive test suite with 90% coverage.", "tester")
+  Task("Reviewer agent", "Review code quality and security. Document findings.", "reviewer")
   
-  return Response.json({ success: true });
-}
+  // Batch ALL todos in ONE call
+  TodoWrite { todos: [
+    {id: "1", content: "Research API patterns", status: "in_progress", priority: "high"},
+    {id: "2", content: "Design database schema", status: "in_progress", priority: "high"},
+    {id: "3", content: "Implement authentication", status: "pending", priority: "high"},
+    {id: "4", content: "Build REST endpoints", status: "pending", priority: "high"},
+    {id: "5", content: "Write unit tests", status: "pending", priority: "medium"},
+    {id: "6", content: "Integration tests", status: "pending", priority: "medium"},
+    {id: "7", content: "API documentation", status: "pending", priority: "low"},
+    {id: "8", content: "Performance optimization", status: "pending", priority: "low"}
+  ]}
+  
+  // Parallel file operations
+  Bash "mkdir -p app/{src,tests,docs,config}"
+  Write "app/package.json"
+  Write "app/src/server.js"
+  Write "app/tests/server.test.js"
+  Write "app/docs/API.md"
 ```
 
-## Animation Guidelines
-
-### Scroll Animations (Framer Motion)
-```tsx
-import { motion } from "framer-motion"
-
-// Fade in from bottom
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.6 }}
->
-  {content}
-</motion.div>
-
-// Stagger children
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+### ❌ WRONG (Multiple Messages):
+```javascript
+Message 1: mcp__claude-flow__swarm_init
+Message 2: Task("agent 1")
+Message 3: TodoWrite { todos: [single todo] }
+Message 4: Write "file.js"
+// This breaks parallel coordination!
 ```
 
-### Hover Effects
-```css
-/* Button hover */
-hover:scale-105 hover:shadow-lg hover:shadow-[#00F0FF]/25
+## Performance Benefits
 
-/* Card hover */
-hover:translate-y-[-2px] hover:shadow-xl hover:shadow-[#00F0FF]/20
+- **84.8% SWE-Bench solve rate**
+- **32.3% token reduction**
+- **2.8-4.4x speed improvement**
+- **27+ neural models**
 
-/* Link hover */
-hover:text-[#00F0FF] transition-colors duration-200
-```
+## Hooks Integration
 
-## Copy Guidelines
+### Pre-Operation
+- Auto-assign agents by file type
+- Validate commands for safety
+- Prepare resources automatically
+- Optimize topology by complexity
+- Cache searches
 
-### Headlines
-- Use questions to engage: "Ready to..."
-- Include benefit: "Transform", "Growth", "Revenue"
-- Keep under 10 words when possible
+### Post-Operation
+- Auto-format code
+- Train neural patterns
+- Update memory
+- Analyze performance
+- Track token usage
 
-### Body Copy
-- Short paragraphs (2-3 sentences max)
-- Use line breaks for readability
-- Include power words: "exactly", "proven", "guaranteed"
+### Session Management
+- Generate summaries
+- Persist state
+- Track metrics
+- Restore context
+- Export workflows
 
-### CTAs
-- Action-oriented: "Get", "Start", "Transform"
-- Include urgency: "Now", "Today"
-- Add direction arrows: →
+## Advanced Features (v2.0.0)
 
-## Common Pitfalls to Avoid
+- 🚀 Automatic Topology Selection
+- ⚡ Parallel Execution (2.8-4.4x speed)
+- 🧠 Neural Training
+- 📊 Bottleneck Analysis
+- 🤖 Smart Auto-Spawning
+- 🛡️ Self-Healing Workflows
+- 💾 Cross-Session Memory
+- 🔗 GitHub Integration
 
-### ❌ DON'T:
-- Use generic corporate language
-- Focus on features instead of benefits
-- Make the form too long or complex
-- Use light backgrounds (stay dark/bold)
-- Forget mobile responsiveness
-- Skip form validation
-- Use boring, static designs
-- Write long paragraphs
-- Focus on healthcare/nursing background
-- Use muted or pastel colors
+## Integration Tips
 
-### ✅ DO:
-- Write conversationally as Timi
-- Focus on the 25% revenue increase
-- Keep form fields minimal (4 fields max)
-- Use dark backgrounds with bright accents
-- Test on all screen sizes
-- Validate in real-time with helpful errors
-- Add subtle animations and interactions
-- Use short, punchy sentences
-- Emphasize informatics/AI expertise
-- Use bold, vibrant brand colors
+1. Start with basic swarm init
+2. Scale agents gradually
+3. Use memory for context
+4. Monitor progress regularly
+5. Train patterns from success
+6. Enable hooks automation
+7. Use GitHub tools first
 
-## Testing Checklist
-Before considering any section complete:
+## Support
 
-- [ ] Mobile responsive (320px to 1440px+)
-- [ ] All brand colors used correctly
-- [ ] Copy matches Timi's voice
-- [ ] Forms validate properly
-- [ ] Animations are smooth
-- [ ] Accessibility standards met
-- [ ] Performance optimized
-- [ ] Cross-browser tested
+- Documentation: https://github.com/ruvnet/claude-flow
+- Issues: https://github.com/ruvnet/claude-flow/issues
 
-## Environment Variables
-```env
-# .env.local
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-NEXT_PUBLIC_FB_PIXEL_ID=XXXXXXXXXXXXXXX
-GHL_WEBHOOK_URL=https://api.gohighlevel.com/v1/...
-GHL_API_KEY=your-ghl-api-key
-```
+---
 
-## Quick Reference
+Remember: **Claude Flow coordinates, Claude Code creates!**
 
-### Import Statements
-```tsx
-// Common imports for every component
-import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { toast } from "sonner"
-```
-
-### Tailwind Config Extensions
-```js
-// tailwind.config.ts
-theme: {
-  extend: {
-    colors: {
-      'brand': {
-        'navy': '#0B3142',
-        'purple': '#2B174C',
-        'cyan': '#00F0FF',
-        'magenta': '#FF2C6D',
-        'cream': '#FFF6D6',
-        'accent': '#3EC6FF',
-      }
-    }
-  }
-}
-```
-
-**IMPORTANT**: This document should be referenced at the start of every Claude Code session to ensure consistency. Always prioritize Timi's conversational voice and the bold, modern design aesthetic with the specified brand colors.
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+Never save working files, text/mds and tests to the root folder.
