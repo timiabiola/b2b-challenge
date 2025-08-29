@@ -70,14 +70,20 @@ export default function RootLayout({
         )}
         {children}
         <Toaster 
-          position="bottom-right"
+          position="top-center"
           toastOptions={{
-            className: 'bg-[#0B3142] border border-[#3EC6FF]/30 text-white',
+            className: 'bg-[#0B3142] border-2 border-[#00F0FF] text-white shadow-2xl shadow-[#00F0FF]/20',
             style: {
-              background: '#0B3142',
+              background: 'linear-gradient(135deg, #0B3142 0%, #2B174C 100%)',
               color: '#FFFFFF',
-              border: '1px solid rgba(62, 198, 255, 0.3)',
+              border: '2px solid #00F0FF',
+              fontSize: '1.1rem',
+              padding: '1.25rem',
+              minWidth: '400px',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 20px 40px rgba(0, 240, 255, 0.3)',
             },
+            descriptionClassName: 'text-[#FFF6D6] text-base mt-1 font-medium',
           }}
         />
       </body>

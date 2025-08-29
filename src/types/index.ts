@@ -1,7 +1,11 @@
 export interface LeadFormData {
+  firstName: string
+  lastName: string
+  email: string
   phone: string
+  position: string
   industry: string
-  processToAutomate: string
+  processesToAutomate: string[]
   decisionAuthority: 'yes' | 'no' | 'other'
 }
 

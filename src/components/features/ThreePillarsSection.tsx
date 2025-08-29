@@ -49,7 +49,7 @@ export function ThreePillarsSection() {
             The Three Pillars of Your Transformation
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Forget complicated frameworks. Here&apos;s exactly how we&apos;ll double your revenue in 90 days.
+            Skip the frameworks—here&apos;s your 90-day revenue-doubling roadmap.
           </p>
         </motion.div>
 

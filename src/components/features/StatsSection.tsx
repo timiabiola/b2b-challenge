@@ -47,8 +47,8 @@ export function StatsSection() {
           <h2 className="text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-4">
             What You Can Expect
           </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Our clients consistently achieve these results within 90 days of implementation
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            Our clients achieve these results in just 90 days
           </p>
         </motion.div>
 

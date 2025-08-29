@@ -48,14 +48,26 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start"
             >
               <Button 
-                size="lg" 
+                size="default" 
                 variant="primary"
                 onClick={scrollToForm}
-                className="text-lg px-8 py-6 h-auto"
+                className="text-base px-6 py-2.5 h-auto font-semibold"
               >
                 {HERO_CONTENT.ctaText}
+              </Button>
+              <Button 
+                size="default" 
+                variant="secondary"
+                onClick={() => {
+                  trackCTAClick('growth-assessment')
+                  window.open('https://timi-ubvro9j7.scoreapp.com/', '_blank')
+                }}
+                className="text-base px-6 py-2.5 h-auto font-semibold"
+              >
+                Take Growth Assessment →
               </Button>
             </motion.div>
           </motion.div>
