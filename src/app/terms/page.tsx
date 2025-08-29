@@ -63,8 +63,8 @@ export default function TermsOfService() {
               For any questions regarding these Terms of Service, please contact us at:
             </p>
             <p className="text-white/80 mt-2">
-              Email: <a href="mailto:legal@enlightenedinformatics.com" className="text-[#00F0FF] hover:text-[#FF2C6D]">
-                legal@enlightenedinformatics.com
+              Email: <a href="mailto:inquiries@enlightenedinformatics.com" className="text-[#00F0FF] hover:text-[#FF2C6D]">
+                inquiries@enlightenedinformatics.com
               </a>
             </p>
           </section>
