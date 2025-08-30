@@ -69,7 +69,7 @@ export function ThreePillarsSection() {
                 <GlowCard className="h-full">
                   <div className="space-y-4">
                     {/* Icon */}
-                    <div className="relative">
+                    <div className="relative flex justify-center lg:justify-start">
                       <div 
                         className="w-16 h-16 rounded-lg flex items-center justify-center"
                         style={{ backgroundColor: `${iconColors[index]}20` }}
@@ -88,17 +88,17 @@ export function ThreePillarsSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] text-center lg:text-left">
                       {pillar.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-white/80 leading-relaxed">
+                    <p className="text-white/80 leading-relaxed text-center lg:text-left">
                       {pillar.description}
                     </p>
 
                     {/* Number indicator */}
-                    <div className="pt-4">
+                    <div className="pt-4 text-center lg:text-left">
                       <span 
                         className="text-5xl font-bold opacity-10"
                         style={{ color: iconColors[index] }}

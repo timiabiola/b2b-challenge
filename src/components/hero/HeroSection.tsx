@@ -25,7 +25,7 @@ export function HeroSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-left"
+            className="text-center lg:text-left"
           >
             <motion.h1 
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#FFF6D6] mb-4 sm:mb-6 leading-tight"
@@ -49,7 +49,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center"
             >
               <Button 
                 size="default" 

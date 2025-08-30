@@ -72,11 +72,11 @@ export function StatsSection() {
                     </Badge>
                   </div>
                   
-                  <h3 className="text-lg sm:text-xl font-bold text-[#FFF6D6] mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#FFF6D6] mb-2 text-center lg:text-left">
                     {stat.label}
                   </h3>
                   
-                  <p className="text-white/70">
+                  <p className="text-white/70 text-center lg:text-left">
                     {stat.description}
                   </p>
                   

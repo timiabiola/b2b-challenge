@@ -229,10 +229,10 @@ export function LeadCaptureSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-[#00F0FF] to-[#FF2C6D] rounded-2xl blur-lg opacity-30" />
             
             <div className="relative bg-[#0B3142] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-[#3EC6FF]/20">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4 text-center">
                 Ready to Transform? Let&apos;s Talk.
               </h2>
-              <p className="text-base sm:text-lg text-white/80 mb-6 sm:mb-8">
+              <p className="text-base sm:text-lg text-white/80 mb-6 sm:mb-8 text-center">
                 Tell me about your biggest challenge, and I&apos;ll show you exactly how to solve it.
               </p>
 

@@ -68,8 +68,8 @@ export function ProcessTimelineSection() {
 
                   <CardContent className="pt-4 pb-5 pl-20 pr-4 sm:pt-6 sm:pb-6 sm:pl-24 sm:pr-6">
                     {/* Header with Title and Duration */}
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                      <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] leading-tight">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] leading-tight text-center sm:text-left">
                         {step.title}
                       </h3>
                       <Badge 
@@ -82,12 +82,12 @@ export function ProcessTimelineSection() {
                     </div>
                     
                     {/* Description */}
-                    <p className="text-sm sm:text-base text-white/80 mb-4 leading-relaxed">
+                    <p className="text-sm sm:text-base text-white/80 mb-4 leading-relaxed text-center sm:text-left">
                       {step.description}
                     </p>
 
                     {/* Milestone Indicator */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 justify-center sm:justify-start">
                       <CheckCircle className="w-4 h-4 text-[#3EC6FF]" />
                       <span className="text-xs sm:text-sm text-[#3EC6FF]">
                         Milestone {index + 1} of 4

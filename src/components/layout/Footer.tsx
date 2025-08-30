@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-gradient-to-br from-[#2B174C] to-[#0B3142] py-12 border-t border-[#3EC6FF]/20">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Company Info */}
           <div>
             <h3 className="text-[#FFF6D6] font-bold text-lg mb-3">

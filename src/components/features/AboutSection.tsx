@@ -27,7 +27,7 @@ export function AboutSection() {
             transition={{ duration: 0.6 }}
           >
             <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-6 sm:mb-8"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-6 sm:mb-8 text-center lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -36,7 +36,7 @@ export function AboutSection() {
               Let&apos;s Have a Real Conversation About Your Business
             </motion.h2>
 
-            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/90 leading-relaxed">
+            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/90 leading-relaxed text-center lg:text-left">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
