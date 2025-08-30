@@ -3,8 +3,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { PROCESS_STEPS } from '@/lib/constants'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, Clock } from 'lucide-react'
 
 export function ProcessTimelineSection() {
   return (
@@ -25,7 +27,7 @@ export function ProcessTimelineSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
             Your Journey to 2X Revenue
@@ -35,87 +37,164 @@ export function ProcessTimelineSection() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00F0FF] via-[#3EC6FF] to-[#FF2C6D] hidden md:block" />
-
-          {/* Timeline items */}
-          <div className="space-y-12">
+        {/* Mobile and Tablet View (Cards) */}
+        <div className="block lg:hidden">
+          <div className="space-y-4 sm:space-y-6">
             {PROCESS_STEPS.map((step, index) => (
               <motion.div
                 key={step.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative flex items-start gap-6"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {/* Step indicator */}
-                <div className="relative z-10 flex-shrink-0">
-                  <motion.div
-                    className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <span className="text-white font-bold text-lg">
-                      {index + 1}
-                    </span>
-                  </motion.div>
-                  
-                  {/* Pulse effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-[#00F0FF]/20"
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                  />
-                </div>
+                <Card className="relative overflow-hidden bg-gradient-to-br from-[#0B3142]/90 to-[#2B174C]/90 border-[#3EC6FF]/20 backdrop-blur-sm hover:border-[#00F0FF]/40 transition-all duration-300">
+                  {/* Step Number Circle */}
+                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+                    <div className="relative">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center">
+                        <span className="text-white font-bold text-lg sm:text-xl">
+                          {index + 1}
+                        </span>
+                      </div>
+                      {/* Pulse effect */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-[#00F0FF]/20"
+                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                      />
+                    </div>
+                  </div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <motion.div
-                    className={`bg-gradient-to-br from-[#0B3142] to-[#2B174C] rounded-xl p-6 border border-[#3EC6FF]/20 ${
-                      index % 2 === 0 ? 'md:ml-0' : 'md:ml-12'
-                    }`}
-                    whileHover={{ 
-                      borderColor: 'rgba(0, 240, 255, 0.5)',
-                      boxShadow: '0 10px 30px -10px rgba(0, 240, 255, 0.3)'
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-2xl font-bold text-[#FFF6D6]">
+                  <CardContent className="pt-4 pb-5 pl-20 pr-4 sm:pt-6 sm:pb-6 sm:pl-24 sm:pr-6">
+                    {/* Header with Title and Duration */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] leading-tight">
                         {step.title}
                       </h3>
-                      <span className="text-sm text-[#00F0FF] font-semibold bg-[#00F0FF]/10 px-3 py-1 rounded-full">
+                      <Badge 
+                        variant="cyan" 
+                        className="inline-flex items-center gap-1 self-start"
+                      >
+                        <Clock className="w-3 h-3" />
                         {step.duration}
-                      </span>
+                      </Badge>
                     </div>
                     
-                    <p className="text-white/80 mb-4">
+                    {/* Description */}
+                    <p className="text-sm sm:text-base text-white/80 mb-4 leading-relaxed">
                       {step.description}
                     </p>
 
-                    {/* Progress indicators */}
-                    <div className="flex items-center gap-2 text-sm text-[#3EC6FF]">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>Milestone {index + 1} of 4</span>
+                    {/* Milestone Indicator */}
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-[#3EC6FF]" />
+                      <span className="text-xs sm:text-sm text-[#3EC6FF]">
+                        Milestone {index + 1} of 4
+                      </span>
                     </div>
-                  </motion.div>
-                </div>
+                  </CardContent>
+
+                  {/* Progress Bar at Bottom */}
+                  <div className="h-1 bg-[#0B3142]">
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-[#00F0FF] to-[#3EC6FF]"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${((index + 1) / PROCESS_STEPS.length) * 100}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
+                    />
+                  </div>
+                </Card>
               </motion.div>
             ))}
           </div>
         </div>
 
+        {/* Desktop View (Original Timeline) */}
+        <div className="hidden lg:block">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00F0FF] via-[#3EC6FF] to-[#FF2C6D]" />
+
+            {/* Timeline items */}
+            <div className="space-y-12">
+              {PROCESS_STEPS.map((step, index) => (
+                <motion.div
+                  key={step.id}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="relative flex items-start gap-6"
+                >
+                  {/* Step indicator */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <motion.div
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <span className="text-white font-bold text-lg">
+                        {index + 1}
+                      </span>
+                    </motion.div>
+                    
+                    {/* Pulse effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full bg-[#00F0FF]/20"
+                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <motion.div
+                      className={`bg-gradient-to-br from-[#0B3142] to-[#2B174C] rounded-xl p-6 border border-[#3EC6FF]/20 ${
+                        index % 2 === 0 ? 'lg:ml-0' : 'lg:ml-12'
+                      }`}
+                      whileHover={{ 
+                        borderColor: 'rgba(0, 240, 255, 0.5)',
+                        boxShadow: '0 10px 30px -10px rgba(0, 240, 255, 0.3)'
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="text-2xl font-bold text-[#FFF6D6]">
+                          {step.title}
+                        </h3>
+                        <Badge variant="cyan" className="ml-3">
+                          {step.duration}
+                        </Badge>
+                      </div>
+                      
+                      <p className="text-white/80 mb-4">
+                        {step.description}
+                      </p>
+
+                      {/* Progress indicators */}
+                      <div className="flex items-center gap-2 text-sm text-[#3EC6FF]">
+                        <CheckCircle className="w-4 h-4" />
+                        <span>Milestone {index + 1} of 4</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Bottom CTA */}
         <motion.div
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p className="text-lg text-white/80 mb-6">
+          <p className="text-base sm:text-lg text-white/80 mb-6">
             Stop overthinking. Start transforming. Your competition won&apos;t wait.
           </p>
           <motion.div
@@ -124,7 +203,7 @@ export function ProcessTimelineSection() {
           >
             <a 
               href="#lead-form"
-              className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold text-lg"
+              className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold text-base sm:text-lg"
             >
               Start Your 90-Day Transformation
               <span className="text-xl">→</span>
