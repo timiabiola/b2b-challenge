@@ -64,11 +64,11 @@ export function HeroSection() {
                 variant="secondary"
                 onClick={() => {
                   trackCTAClick('growth-assessment', 'hero-section')
-                  window.open('https://timi-ubvro9j7.scoreapp.com/', '_blank')
+                  window.open('https://nurse-entrepreneur.scoreapp.com', '_blank')
                 }}
                 className="text-base px-6 py-3 h-auto font-semibold min-h-[44px] w-full sm:w-auto"
               >
-                Take Growth Assessment →
+                Take Readiness Assessment →
               </Button>
             </motion.div>
           </motion.div>
