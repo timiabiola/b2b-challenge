@@ -59,16 +59,16 @@ export function HeroSection() {
               >
                 {HERO_CONTENT.ctaText}
               </Button>
-              <Button 
-                size="default" 
+              <Button
+                size="default"
                 variant="secondary"
                 onClick={() => {
                   trackCTAClick('growth-assessment', 'hero-section')
                   window.open('https://nurse-entrepreneur.scoreapp.com', '_blank')
                 }}
-                className="text-base px-6 py-3 h-auto font-semibold min-h-[44px] w-full sm:w-auto"
+                className="text-sm sm:text-base px-4 sm:px-6 py-3 h-auto font-semibold min-h-[44px] w-full sm:w-auto"
               >
-                Take Readiness Assessment →
+                Take the Readiness Assessment →
               </Button>
             </motion.div>
           </motion.div>
