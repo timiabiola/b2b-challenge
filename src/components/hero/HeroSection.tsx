@@ -51,11 +51,11 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center lg:items-start justify-center lg:justify-start"
             >
-              <Button 
-                size="default" 
+              <Button
+                size="default"
                 variant="primary"
                 onClick={scrollToForm}
-                className="text-base px-6 py-3 h-auto font-semibold min-h-[44px] w-full sm:w-auto"
+                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
               >
                 {HERO_CONTENT.ctaText}
               </Button>
@@ -64,11 +64,14 @@ export function HeroSection() {
                 variant="secondary"
                 onClick={() => {
                   trackCTAClick('growth-assessment', 'hero-section')
-                  window.open('https://calendly.com/inquiries-enlightenedinformatics/bedside-to-business-accelerator-discovery-call', '_blank')
+                  window.open('https://contraint-assessment.scoreapp.com/', '_blank')
                 }}
-                className="text-sm sm:text-base px-4 sm:px-6 py-3 h-auto font-semibold min-h-[44px] w-full sm:w-auto"
+                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center whitespace-normal leading-tight"
               >
-                Want to Start a Business? →
+                <span className="inline-block text-center">
+                  Take the Growth<br />
+                  Constraint Assessment
+                </span>
               </Button>
             </motion.div>
           </motion.div>
