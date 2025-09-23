@@ -64,7 +64,7 @@ export function HeroSection() {
                 variant="secondary"
                 onClick={() => {
                   trackCTAClick('growth-assessment', 'hero-section')
-                  window.open('https://contraint-assessment.scoreapp.com/', '_blank')
+                  window.open('https://constraint-assessment.scoreapp.com/', '_blank')
                 }}
                 className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center whitespace-normal leading-tight"
               >
