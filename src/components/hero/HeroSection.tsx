@@ -64,11 +64,11 @@ export function HeroSection() {
                 variant="secondary"
                 onClick={() => {
                   trackCTAClick('growth-assessment', 'hero-section')
-                  window.open('https://nurse-entrepreneur.scoreapp.com', '_blank')
+                  window.open('https://calendly.com/inquiries-enlightenedinformatics/bedside-to-business-accelerator-discovery-call', '_blank')
                 }}
                 className="text-sm sm:text-base px-4 sm:px-6 py-3 h-auto font-semibold min-h-[44px] w-full sm:w-auto"
               >
-                Take the Readiness Assessment →
+                Want to Start a Business? →
               </Button>
             </motion.div>
           </motion.div>
