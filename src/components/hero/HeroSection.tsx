@@ -49,7 +49,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center lg:items-start justify-center lg:justify-start"
+              className="flex justify-center lg:justify-start"
             >
               <Button
                 size="default"
@@ -58,20 +58,6 @@ export function HeroSection() {
                 className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
               >
                 {HERO_CONTENT.ctaText}
-              </Button>
-              <Button
-                size="default"
-                variant="secondary"
-                onClick={() => {
-                  trackCTAClick('growth-assessment', 'hero-section')
-                  window.open('https://constraint-assessment.scoreapp.com/', '_blank')
-                }}
-                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center whitespace-normal leading-tight"
-              >
-                <span className="inline-block text-center">
-                  Take the Growth<br />
-                  Constraint Assessment
-                </span>
               </Button>
             </motion.div>
           </motion.div>

@@ -6,7 +6,7 @@ import { Section } from '@/components/layout/Section'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { PROCESS_STEPS } from '@/lib/constants'
-import { CheckCircle, Clock } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
 
 export function ProcessTimelineSection() {
   return (
@@ -30,10 +30,10 @@ export function ProcessTimelineSection() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
-            Your Journey to 2X Revenue
+            Your 5-Step Blueprint to Consulting Success
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-white/80">
-            Simple. Strategic. And it starts today.
+            From bedside nurse to business owner in 90 days. Simple. Strategic. And it starts today.
           </p>
         </motion.div>
 
@@ -67,18 +67,11 @@ export function ProcessTimelineSection() {
                   </div>
 
                   <CardContent className="pt-4 pb-5 pl-20 pr-4 sm:pt-6 sm:pb-6 sm:pl-24 sm:pr-6">
-                    {/* Header with Title and Duration */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                    {/* Header with Title */}
+                    <div className="mb-3">
                       <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] leading-tight text-center sm:text-left">
                         {step.title}
                       </h3>
-                      <Badge 
-                        variant="cyan" 
-                        className="inline-flex items-center gap-1 self-start"
-                      >
-                        <Clock className="w-3 h-3" />
-                        {step.duration}
-                      </Badge>
                     </div>
                     
                     {/* Description */}
@@ -90,7 +83,7 @@ export function ProcessTimelineSection() {
                     <div className="flex items-center gap-2 justify-center sm:justify-start">
                       <CheckCircle className="w-4 h-4 text-[#3EC6FF]" />
                       <span className="text-xs sm:text-sm text-[#3EC6FF]">
-                        Milestone {index + 1} of 4
+                        Step {index + 1} of 5
                       </span>
                     </div>
                   </CardContent>
@@ -160,13 +153,10 @@ export function ProcessTimelineSection() {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="flex items-start justify-between mb-2">
+                      <div className="mb-2">
                         <h3 className="text-2xl font-bold text-[#FFF6D6]">
                           {step.title}
                         </h3>
-                        <Badge variant="cyan" className="ml-3">
-                          {step.duration}
-                        </Badge>
                       </div>
                       
                       <p className="text-white/80 mb-4">
@@ -176,7 +166,7 @@ export function ProcessTimelineSection() {
                       {/* Progress indicators */}
                       <div className="flex items-center gap-2 text-sm text-[#3EC6FF]">
                         <CheckCircle className="w-4 h-4" />
-                        <span>Milestone {index + 1} of 4</span>
+                        <span>Step {index + 1} of 5</span>
                       </div>
                     </motion.div>
                   </div>
@@ -195,17 +185,17 @@ export function ProcessTimelineSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-base sm:text-lg text-white/80 mb-6">
-            Stop overthinking. Start transforming. Your competition won&apos;t wait.
+            Stop second-guessing your potential. Download your blueprint and start building your business today.
           </p>
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <a 
+            <a
               href="#lead-form"
               className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold text-base sm:text-lg"
             >
-              Start Your 90-Day Transformation
+              Get Your Free Blueprint
               <span className="text-xl">→</span>
             </a>
           </motion.div>

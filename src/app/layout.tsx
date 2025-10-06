@@ -69,7 +69,7 @@ export default function RootLayout({
           <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
         )}
         {children}
-        <Toaster 
+        <Toaster
           position="top-center"
           toastOptions={{
             className: 'bg-[#0B3142] border-2 border-[#00F0FF] text-white shadow-2xl shadow-[#00F0FF]/20',
@@ -83,7 +83,7 @@ export default function RootLayout({
               backdropFilter: 'blur(10px)',
               boxShadow: '0 20px 40px rgba(0, 240, 255, 0.3)',
             },
-            descriptionClassName: 'text-[#FFF6D6] text-base mt-1 font-medium',
+            descriptionClassName: 'text-white text-base mt-1 font-medium',
           }}
         />
       </body>

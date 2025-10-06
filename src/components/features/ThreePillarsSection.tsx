@@ -46,10 +46,10 @@ export function ThreePillarsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
-            The Three Pillars of Your Transformation
+            What&apos;s Inside Your Blueprint
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto">
-            Skip the frameworks—here&apos;s your 90-day revenue-doubling roadmap.
+            Everything you need to launch and grow a profitable nurse consulting business.
           </p>
         </motion.div>
 
@@ -122,17 +122,17 @@ export function ThreePillarsSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <p className="text-lg text-white/80 mb-6">
-            This isn&apos;t theory. This is exactly what we&apos;ll build for your business.
+            This isn&apos;t theory. This is the exact framework hundreds of nurses have used to build successful consulting businesses.
           </p>
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <a 
+            <a
               href="#lead-form"
               className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold"
             >
-              Ready to see how this works for you?
+              Download Your Blueprint Now
               <span className="text-xl">→</span>
             </a>
           </motion.div>

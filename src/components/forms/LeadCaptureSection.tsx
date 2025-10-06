@@ -10,33 +10,8 @@ import { Section } from '@/components/layout/Section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import type { LeadFormData } from '@/types'
 import { Loader2 } from 'lucide-react'
-
-const processOptions = [
-  { id: 'customer-onboarding', label: 'Customer Onboarding' },
-  { id: 'invoice-processing', label: 'Invoice Processing' },
-  { id: 'lead-qualification', label: 'Lead Qualification' },
-  { id: 'inventory-management', label: 'Inventory Management' },
-  { id: 'social-media-posting', label: 'Social Media Posting' },
-  { id: 'report-generation', label: 'Report Generation' },
-  { id: 'email-marketing', label: 'Email Marketing' },
-  { id: 'data-entry', label: 'Data Entry' },
-  { id: 'customer-support', label: 'Customer Support' },
-  { id: 'other', label: 'Other' },
-]
-
-const positionOptions = [
-  { value: 'founder', label: 'Founder' },
-  { value: 'ceo', label: 'CEO' },
-  { value: 'director', label: 'Director' },
-  { value: 'manager', label: 'Manager' },
-  { value: 'solopreneur', label: 'Solopreneur' },
-  { value: 'other', label: 'Other' },
-]
 
 const formSchema = z.object({
   firstName: z.string()
@@ -51,59 +26,31 @@ const formSchema = z.object({
   phone: z.string()
     .min(10, 'Please enter a valid phone number')
     .regex(/^[\d\s\-\(\)]+$/, 'Please enter a valid phone number'),
-  position: z.string()
-    .min(1, 'Please select your position'),
-  industry: z.string()
-    .min(2, 'Please tell us your industry')
-    .max(100, 'Industry name is too long'),
-  processesToAutomate: z.array(z.string()).min(1, 'Please select at least one process'),
-  decisionAuthority: z.enum(['yes', 'no', 'other']).refine((val) => val, {
-    message: 'Please select an option',
-  }),
 })
 
 export function LeadCaptureSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [selectedProcesses, setSelectedProcesses] = useState<string[]>([])
-  const [selectedPosition, setSelectedPosition] = useState<string>('')
-  const [selectedDecisionAuthority, setSelectedDecisionAuthority] = useState<string>('')
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
   } = useForm<LeadFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      processesToAutomate: [],
-      position: '',
-      decisionAuthority: undefined,
-    },
   })
 
   const onSubmit = async (data: LeadFormData) => {
     setIsSubmitting(true)
-    
+
     try {
       // Prepare data for webhook
-      const formattedProcesses = data.processesToAutomate
-        .map(p => {
-          const option = processOptions.find(opt => opt.id === p);
-          return option?.label || p;
-        })
-        .join(', ');
-
       const webhookData = {
         first_name: data.firstName,
         last_name: data.lastName,
         email: data.email,
         phone: data.phone,
-        position: data.position,
-        industry: data.industry,
-        processes_to_automate: formattedProcesses,
-        decision_authority: data.decisionAuthority,
+        blueprint_request: 'Bedside-to-Business Blueprint',
         submission_id: crypto.randomUUID(),
         timestamp: new Date().toISOString(),
       };
@@ -160,15 +107,12 @@ export function LeadCaptureSection() {
 
       console.log('✅ Lead submission successful!');
 
-      toast.success('🎉 Got it! We received your information and will be in touch soon!', {
-        description: 'Check your phone within the next 24 hours - we\'re excited to help transform your business!',
+      toast.success('🎉 Success! Your blueprint is on its way!', {
+        description: 'Check your email inbox for your free Bedside-to-Business Blueprint download link.',
         duration: 5000,
       })
       reset()
-      setSelectedProcesses([])
-      setSelectedPosition('')
-      setSelectedDecisionAuthority('')
-      
+
       // Track conversion in Google Analytics
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'generate_lead', {
@@ -176,14 +120,14 @@ export function LeadCaptureSection() {
           'value': 100.0
         })
       }
-      
+
       // Track conversion in Facebook Pixel
       if (typeof window !== 'undefined' && window.fbq) {
         window.fbq('track', 'Lead', {
           currency: 'USD',
           value: 100.0,
-          content_name: 'Growth Analysis',
-          content_category: data.industry
+          content_name: 'Bedside-to-Business Blueprint',
+          content_category: 'Nurse Consulting'
         })
       }
     } catch (error) {
@@ -230,10 +174,10 @@ export function LeadCaptureSection() {
             
             <div className="relative bg-[#0B3142] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-[#3EC6FF]/20">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4 text-center">
-                Ready to Transform? Let&apos;s Talk.
+                Download Your Free Bedside-to-Business Blueprint
               </h2>
               <p className="text-base sm:text-lg text-white/80 mb-6 sm:mb-8 text-center">
-                Tell me about your biggest challenge, and I&apos;ll show you exactly how to solve it.
+                Get instant access to the complete 5-step framework that helps nurses launch profitable consulting businesses.
               </p>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
@@ -305,135 +249,6 @@ export function LeadCaptureSection() {
                   )}
                 </div>
 
-                {/* Position */}
-                <div className="space-y-2">
-                  <Label htmlFor="position" className="text-[#FFF6D6] text-base">
-                    Your Position*
-                  </Label>
-                  <Select 
-                    value={selectedPosition}
-                    onValueChange={(value) => {
-                      setSelectedPosition(value)
-                      setValue('position', value)
-                    }}
-                  >
-                    <SelectTrigger 
-                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
-                    >
-                      <SelectValue placeholder="Select your position" className="placeholder:text-white/50" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-[#0B3142] border-[#3EC6FF]/30">
-                      {positionOptions.map(option => (
-                        <SelectItem 
-                          key={option.value} 
-                          value={option.value}
-                          className="text-white hover:bg-[#3EC6FF]/20 focus:bg-[#3EC6FF]/20 focus:text-white"
-                        >
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.position && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.position.message}</p>
-                  )}
-                </div>
-
-                {/* Industry */}
-                <div className="space-y-2">
-                  <Label htmlFor="industry" className="text-[#FFF6D6] text-base">
-                    Your Industry*
-                  </Label>
-                  <Input
-                    id="industry"
-                    type="text"
-                    placeholder="e.g., E-commerce, SaaS, Manufacturing, Services, Real Estate"
-                    className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
-                    {...register('industry')}
-                  />
-                  {errors.industry && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.industry.message}</p>
-                  )}
-                </div>
-
-                {/* Processes to Automate */}
-                <div className="space-y-3">
-                  <Label className="text-[#FFF6D6] text-base font-semibold">
-                    What&apos;s Eating Up Your Team&apos;s Time?* 
-                    <span className="text-sm font-normal text-white/70 block mt-1">Select all that apply</span>
-                  </Label>
-                  <div className="bg-gradient-to-b from-[#0B3142]/40 to-[#0B3142]/20 rounded-xl p-5 border border-[#3EC6FF]/20 backdrop-blur-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-                      {processOptions.map((option) => (
-                        <div 
-                          key={option.id} 
-                          className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/5 transition-all duration-200 group min-h-[44px]"
-                        >
-                          <Checkbox
-                            id={option.id}
-                            checked={selectedProcesses.includes(option.id)}
-                            onCheckedChange={(checked) => {
-                              const newProcesses = checked
-                                ? [...selectedProcesses, option.id]
-                                : selectedProcesses.filter(p => p !== option.id);
-                              setSelectedProcesses(newProcesses);
-                              setValue('processesToAutomate', newProcesses);
-                            }}
-                            className="h-5 w-5 border-2 border-[#3EC6FF]/50 data-[state=checked]:bg-[#00F0FF] data-[state=checked]:border-[#00F0FF] group-hover:border-[#00F0FF]/70 transition-colors"
-                          />
-                          <Label 
-                            htmlFor={option.id} 
-                            className="text-white/90 cursor-pointer flex-1 font-normal text-sm group-hover:text-white transition-colors"
-                          >
-                            {option.label}
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  {errors.processesToAutomate && (
-                    <p className="text-sm text-[#FF2C6D] flex items-center gap-1">
-                      <span className="inline-block w-1 h-1 bg-[#FF2C6D] rounded-full"></span>
-                      {errors.processesToAutomate.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Decision Authority */}
-                <div className="space-y-3">
-                  <Label className="text-[#FFF6D6] text-base">
-                    Can You Make Investment Decisions?*
-                  </Label>
-                  <RadioGroup 
-                    value={selectedDecisionAuthority}
-                    onValueChange={(value) => {
-                      setSelectedDecisionAuthority(value)
-                      setValue('decisionAuthority', value as 'yes' | 'no' | 'other')
-                    }}>
-                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors min-h-[44px]">
-                      <RadioGroupItem value="yes" id="yes" className="border-[#3EC6FF] text-[#00F0FF]" />
-                      <Label htmlFor="yes" className="text-white cursor-pointer flex-1">
-                        Yes, I can make financial decisions for my organization
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors min-h-[44px]">
-                      <RadioGroupItem value="no" id="no" className="border-[#3EC6FF] text-[#00F0FF]" />
-                      <Label htmlFor="no" className="text-white cursor-pointer flex-1">
-                        No, I need to consult with others first
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#3EC6FF]/10 transition-colors min-h-[44px]">
-                      <RadioGroupItem value="other" id="other" className="border-[#3EC6FF] text-[#00F0FF]" />
-                      <Label htmlFor="other" className="text-white cursor-pointer flex-1">
-                        It&apos;s complicated (I&apos;ll explain)
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                  {errors.decisionAuthority && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.decisionAuthority.message}</p>
-                  )}
-                </div>
-
                 {/* Submit Button */}
                 <div className="flex justify-center">
                   <Button
@@ -445,17 +260,17 @@ export function LeadCaptureSection() {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Submitting...
+                        Sending...
                       </>
                     ) : (
-                      "Let's get to work! →"
+                      "Send Me the Blueprint →"
                     )}
                   </Button>
                 </div>
 
                 {/* Privacy Notice */}
                 <p className="text-sm text-white/60 text-center">
-                  🔒 Your information is 100% secure. No spam, just solutions.
+                  🔒 Your information is 100% secure. We respect your privacy and will never spam you.
                 </p>
               </form>
             </div>
