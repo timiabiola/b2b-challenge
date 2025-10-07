@@ -49,7 +49,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
               <Button
                 size="default"
@@ -58,6 +58,14 @@ export function HeroSection() {
                 className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
               >
                 {HERO_CONTENT.ctaText}
+              </Button>
+              <Button
+                size="default"
+                variant="outline"
+                onClick={scrollToForm}
+                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center border-2 border-[#3EC6FF] text-[#00F0FF] hover:bg-[#00F0FF]/10 hover:text-[#00F0FF]"
+              >
+                {HERO_CONTENT.ctaTextSecondary}
               </Button>
             </motion.div>
           </motion.div>

@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { PROCESS_STEPS } from '@/lib/constants'
-import { CheckCircle } from 'lucide-react'
+import { CHALLENGE_DAYS } from '@/lib/constants'
+import { CheckCircle, Target } from 'lucide-react'
 
 export function ProcessTimelineSection() {
   return (
@@ -30,26 +30,33 @@ export function ProcessTimelineSection() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
-            Your 5-Step Blueprint to Consulting Success
+            Your 3-Day Challenge Breakdown
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-white/80">
-            From bedside nurse to business owner in 90 days. Simple. Strategic. And it starts today.
+            From nurse to consultant in 3 intensive days. Focused. Transformative. Results-driven.
           </p>
         </motion.div>
 
         {/* Mobile and Tablet View (Cards) */}
         <div className="block lg:hidden">
           <div className="space-y-4 sm:space-y-6">
-            {PROCESS_STEPS.map((step, index) => (
+            {CHALLENGE_DAYS.map((day, index) => (
               <motion.div
-                key={step.id}
+                key={day.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Card className="relative overflow-hidden bg-gradient-to-br from-[#0B3142]/90 to-[#2B174C]/90 border-[#3EC6FF]/20 backdrop-blur-sm hover:border-[#00F0FF]/40 transition-all duration-300">
-                  {/* Step Number Circle */}
+                  {/* Day Badge */}
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+                    <Badge className="bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] text-white font-bold px-3 py-1">
+                      {day.day}
+                    </Badge>
+                  </div>
+
+                  {/* Day Number Circle */}
                   <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
                     <div className="relative">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center">
@@ -70,30 +77,40 @@ export function ProcessTimelineSection() {
                     {/* Header with Title */}
                     <div className="mb-3">
                       <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] leading-tight text-center sm:text-left">
-                        {step.title}
+                        {day.title}
                       </h3>
                     </div>
-                    
+
                     {/* Description */}
                     <p className="text-sm sm:text-base text-white/80 mb-4 leading-relaxed text-center sm:text-left">
-                      {step.description}
+                      {day.description}
                     </p>
 
-                    {/* Milestone Indicator */}
+                    {/* Goals List */}
+                    <div className="space-y-2 mb-4">
+                      {day.goals.map((goal, goalIndex) => (
+                        <div key={goalIndex} className="flex items-start gap-2">
+                          <Target className="w-4 h-4 text-[#00F0FF] flex-shrink-0 mt-0.5" />
+                          <span className="text-xs sm:text-sm text-white/70">{goal}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Day Indicator */}
                     <div className="flex items-center gap-2 justify-center sm:justify-start">
                       <CheckCircle className="w-4 h-4 text-[#3EC6FF]" />
                       <span className="text-xs sm:text-sm text-[#3EC6FF]">
-                        Step {index + 1} of 5
+                        Day {index + 1} of 3
                       </span>
                     </div>
                   </CardContent>
 
                   {/* Progress Bar at Bottom */}
                   <div className="h-1 bg-[#0B3142]">
-                    <motion.div 
+                    <motion.div
                       className="h-full bg-gradient-to-r from-[#00F0FF] to-[#3EC6FF]"
                       initial={{ width: 0 }}
-                      whileInView={{ width: `${((index + 1) / PROCESS_STEPS.length) * 100}%` }}
+                      whileInView={{ width: `${((index + 1) / CHALLENGE_DAYS.length) * 100}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
                     />
@@ -112,16 +129,16 @@ export function ProcessTimelineSection() {
 
             {/* Timeline items */}
             <div className="space-y-12">
-              {PROCESS_STEPS.map((step, index) => (
+              {CHALLENGE_DAYS.map((day, index) => (
                 <motion.div
-                  key={step.id}
+                  key={day.id}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="relative flex items-start gap-6"
                 >
-                  {/* Step indicator */}
+                  {/* Day indicator */}
                   <div className="relative z-10 flex-shrink-0">
                     <motion.div
                       className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center"
@@ -132,7 +149,7 @@ export function ProcessTimelineSection() {
                         {index + 1}
                       </span>
                     </motion.div>
-                    
+
                     {/* Pulse effect */}
                     <motion.div
                       className="absolute inset-0 rounded-full bg-[#00F0FF]/20"
@@ -147,26 +164,39 @@ export function ProcessTimelineSection() {
                       className={`bg-gradient-to-br from-[#0B3142] to-[#2B174C] rounded-xl p-6 border border-[#3EC6FF]/20 ${
                         index % 2 === 0 ? 'lg:ml-0' : 'lg:ml-12'
                       }`}
-                      whileHover={{ 
+                      whileHover={{
                         borderColor: 'rgba(0, 240, 255, 0.5)',
                         boxShadow: '0 10px 30px -10px rgba(0, 240, 255, 0.3)'
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="mb-2">
+                      <div className="flex items-center justify-between mb-3">
                         <h3 className="text-2xl font-bold text-[#FFF6D6]">
-                          {step.title}
+                          {day.title}
                         </h3>
+                        <Badge className="bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] text-white font-bold">
+                          {day.day}
+                        </Badge>
                       </div>
-                      
+
                       <p className="text-white/80 mb-4">
-                        {step.description}
+                        {day.description}
                       </p>
+
+                      {/* Goals List */}
+                      <div className="space-y-2 mb-4">
+                        {day.goals.map((goal, goalIndex) => (
+                          <div key={goalIndex} className="flex items-start gap-2">
+                            <Target className="w-4 h-4 text-[#00F0FF] flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-white/70">{goal}</span>
+                          </div>
+                        ))}
+                      </div>
 
                       {/* Progress indicators */}
                       <div className="flex items-center gap-2 text-sm text-[#3EC6FF]">
                         <CheckCircle className="w-4 h-4" />
-                        <span>Step {index + 1} of 5</span>
+                        <span>Day {index + 1} of 3</span>
                       </div>
                     </motion.div>
                   </div>
@@ -185,7 +215,7 @@ export function ProcessTimelineSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-base sm:text-lg text-white/80 mb-6">
-            Stop second-guessing your potential. Download your blueprint and start building your business today.
+            Stop second-guessing your potential. Join the waitlist and be the first to know when the next challenge launches.
           </p>
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -195,7 +225,7 @@ export function ProcessTimelineSection() {
               href="#lead-form"
               className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold text-base sm:text-lg"
             >
-              Get Your Free Blueprint
+              Join the Waitlist
               <span className="text-xl">→</span>
             </a>
           </motion.div>

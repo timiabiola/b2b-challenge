@@ -10,6 +10,7 @@ import { Section } from '@/components/layout/Section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import type { LeadFormData } from '@/types'
 import { Loader2 } from 'lucide-react'
 
@@ -26,6 +27,8 @@ const formSchema = z.object({
   phone: z.string()
     .min(10, 'Please enter a valid phone number')
     .regex(/^[\d\s\-\(\)]+$/, 'Please enter a valid phone number'),
+  businessReason: z.string()
+    .min(1, 'Please select a reason'),
 })
 
 export function LeadCaptureSection() {
@@ -50,7 +53,8 @@ export function LeadCaptureSection() {
         last_name: data.lastName,
         email: data.email,
         phone: data.phone,
-        blueprint_request: 'Bedside-to-Business Blueprint',
+        business_reason: data.businessReason,
+        blueprint_request: 'Bedside to Business Challenge Waitlist',
         submission_id: crypto.randomUUID(),
         timestamp: new Date().toISOString(),
       };
@@ -107,8 +111,8 @@ export function LeadCaptureSection() {
 
       console.log('✅ Lead submission successful!');
 
-      toast.success('🎉 Success! Your blueprint is on its way!', {
-        description: 'Check your email inbox for your free Bedside-to-Business Blueprint download link.',
+      toast.success('🎉 Success! You\'re on the waitlist!', {
+        description: 'Check your email for confirmation and we\'ll notify you as soon as the next challenge opens.',
         duration: 5000,
       })
       reset()
@@ -126,8 +130,8 @@ export function LeadCaptureSection() {
         window.fbq('track', 'Lead', {
           currency: 'USD',
           value: 100.0,
-          content_name: 'Bedside-to-Business Blueprint',
-          content_category: 'Nurse Consulting'
+          content_name: 'Bedside to Business Challenge Waitlist',
+          content_category: 'Nurse Consulting Challenge'
         })
       }
     } catch (error) {
@@ -174,10 +178,10 @@ export function LeadCaptureSection() {
             
             <div className="relative bg-[#0B3142] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-[#3EC6FF]/20">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4 text-center">
-                Download Your Free Bedside-to-Business Blueprint
+                Join the Bedside to Business Challenge Waitlist
               </h2>
               <p className="text-base sm:text-lg text-white/80 mb-6 sm:mb-8 text-center">
-                Get instant access to the complete 5-step framework that helps nurses launch profitable consulting businesses.
+                Be the first to know when the next 3-day intensive challenge launches. Limited spots available—secure your place now.
               </p>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
@@ -249,6 +253,63 @@ export function LeadCaptureSection() {
                   )}
                 </div>
 
+                {/* Business Reason */}
+                <div className="space-y-3">
+                  <Label className="text-[#FFF6D6] text-base">
+                    Why do you want to start a business?*
+                  </Label>
+                  <RadioGroup
+                    onValueChange={(value) => {
+                      const event = { target: { value } }
+                      register('businessReason').onChange(event)
+                    }}
+                    className="space-y-3"
+                  >
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
+                      <RadioGroupItem value="experience-income" id="reason-1" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                      <Label
+                        htmlFor="reason-1"
+                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                      >
+                        I want to use my experience, skills and knowledge to create a new income source.
+                      </Label>
+                    </div>
+
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
+                      <RadioGroupItem value="side-hustle" id="reason-2" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                      <Label
+                        htmlFor="reason-2"
+                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                      >
+                        I want to supplement my employment income by developing a side hustle.
+                      </Label>
+                    </div>
+
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
+                      <RadioGroupItem value="replace-income" id="reason-3" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                      <Label
+                        htmlFor="reason-3"
+                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                      >
+                        I want to build a business that will replace my employment income and allow me to leave my job.
+                      </Label>
+                    </div>
+
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
+                      <RadioGroupItem value="personal-brand" id="reason-4" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                      <Label
+                        htmlFor="reason-4"
+                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                      >
+                        I want to develop and build my Personal Brand online through offers that add value and social media presence.
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                  {errors.businessReason && (
+                    <p className="text-sm text-[#FF2C6D]">{errors.businessReason.message}</p>
+                  )}
+                </div>
+
                 {/* Submit Button */}
                 <div className="flex justify-center">
                   <Button
@@ -263,14 +324,14 @@ export function LeadCaptureSection() {
                         Sending...
                       </>
                     ) : (
-                      "Send Me the Blueprint →"
+                      "Join the Waitlist →"
                     )}
                   </Button>
                 </div>
 
                 {/* Privacy Notice */}
                 <p className="text-sm text-white/60 text-center">
-                  🔒 Your information is 100% secure. We respect your privacy and will never spam you.
+                  🔒 Your information is 100% secure. Limited spots available. Join the waitlist to be notified when registration opens.
                 </p>
               </form>
             </div>

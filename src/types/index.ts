@@ -3,6 +3,7 @@ export interface LeadFormData {
   lastName: string
   email: string
   phone: string
+  businessReason: string
 }
 
 export interface LeadSubmission extends LeadFormData {

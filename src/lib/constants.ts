@@ -12,80 +12,90 @@ export const BRAND_COLORS = {
 export const COMPANY_INFO = {
   name: 'Enlightened Informatics',
   founder: 'Timi Abiola',
-  tagline: 'Transform Your Nursing Expertise into a Thriving Consulting Business',
-  valueProposition: 'Launch your nurse consulting business and achieve your first $5,000 in earnings within 90 days',
+  tagline: 'Launch Your Nurse Consulting Business in 3 Intensive Days',
+  valueProposition: 'Complete weeks 1-2 of our proven 90-day program in one transformative 3-day challenge',
 } as const
 
 export const HERO_CONTENT = {
-  headline: 'Transform Your Nursing Expertise into a Thriving Consulting Business',
-  subheadline: "The Bedside-to-Business Blueprint takes the guesswork out of starting your business. Get clear steps, proven strategies, and practical tools to discover your value, launch with confidence, and build financial freedom.",
-  ctaText: 'Download My Free Blueprint →',
+  headline: 'Launch Your Nurse Consulting Business in 3 Intensive Days',
+  subheadline: "Join the Bedside to Business Challenge—a focused 3-day intensive where you'll complete your foundation setup, define your offers, and position yourself to land your first clients. Everything you need to go from nurse to consultant, fast.",
+  ctaText: 'Join the Challenge →',
+  ctaTextSecondary: 'Join the Waitlist',
 } as const
 
 export const ABOUT_CONTENT = {
-  paragraph1: "This roadmap was built just for nurses—it takes the confusion out of starting your own business with clear steps, proven strategies, and practical tools.",
+  paragraph1: "This 3-day intensive challenge condenses weeks 1-2 of our proven 90-day program into a transformative experience designed specifically for nurses ready to launch their consulting business.",
   paragraph2: "The need for nurse experts is growing fast (projected 5% growth through 2034), and organizations are willing to pay for your knowledge. Nurse consultants typically earn $85–$250 an hour, offering insights that hospitals, insurers, and healthcare systems can't get anywhere else.",
-  paragraph3: "Stop doubting your value. The Bedside-to-Business Blueprint gives you everything you need to turn your clinical experience into a profitable consulting practice.",
+  paragraph3: "Stop doubting your value. The Bedside to Business Challenge gives you the intensive support, clear action steps, and accountability you need to launch your consulting practice in just 3 days.",
 } as const
 
 export const THREE_PILLARS = [
   {
-    id: 'niche-assessment',
-    title: 'Personalized Niche Assessment',
+    id: 'foundation-setup',
+    title: 'Complete Foundation Setup',
     icon: 'Brain',
-    description: "Utilize quick, intuitive tools to identify your core talents and ideal specialty in just 15-20 minutes, ensuring your consulting path aligns with your strengths.",
+    description: "Launch your website, complete business incorporation, establish bookkeeping systems, and ensure full legal compliance—all in Day 1.",
   },
   {
-    id: 'service-models',
-    title: 'Proven Consulting Models',
+    id: 'offers-positioning',
+    title: 'Define Your Offers & Positioning',
     icon: 'Rocket',
-    description: "Explore over 15 ready-to-implement consulting and coaching service ideas, complete with strategic pricing frameworks, designed for immediate application in the market.",
+    description: "Identify and validate your consulting packages, develop your ideal client avatar, and create a clear marketing strategy that positions you as the expert—completed on Day 2.",
   },
   {
-    id: 'launch-accelerator',
-    title: '90-Day Launch Accelerator',
+    id: 'market-ready',
+    title: 'Get Market-Ready',
     icon: 'Cpu',
-    description: "Follow a detailed, week-by-week action plan engineered to guide you through critical startup phases, setting a clear trajectory toward achieving your first $5,000 in earnings.",
+    description: "Finalize your business setup, integrate all systems, and prepare for immediate client acquisition with a clear action plan for your first $5,000 in earnings.",
   },
 ] as const
 
-export const PROCESS_STEPS = [
+export const CHALLENGE_DAYS = [
   {
-    id: 'quick-assessment',
-    title: 'Quick Assessment',
-    duration: '20 minutes',
-    description: "Uncover your unique consulting value through rapid-fire exercises designed to identify your core strengths by leveraging your invaluable nursing experience.",
+    id: 'day-1',
+    day: 'Day 1',
+    title: 'Launch Your Foundation',
+    duration: 'Intensive Day 1',
+    description: "Build and launch your professional website, complete your business incorporation, establish bookkeeping systems, and ensure legal compliance from Day 1. You'll walk away with a fully operational business infrastructure.",
+    goals: [
+      'Website launched and live',
+      'Business legally incorporated',
+      'Bookkeeping system established',
+      'Legal compliance verified'
+    ]
   },
   {
-    id: 'ideal-client',
-    title: 'Ideal Client Avatar Method',
-    duration: '2-3 hours',
-    description: 'Use this data-driven approach to define your precise ideal client, ensuring your consulting efforts are impactful and results-focused.',
+    id: 'day-2',
+    day: 'Day 2',
+    title: 'Develop Your Offers & Ideal Client Avatar',
+    duration: 'Intensive Day 2',
+    description: 'Identify and validate consulting packages based on your clinical expertise and market needs. Develop a crystal-clear ideal client avatar and create a marketing strategy that effectively positions your unique value in the healthcare landscape.',
+    goals: [
+      'Consulting packages defined and priced',
+      'Ideal client avatar completed',
+      'Marketing strategy developed',
+      'Value proposition refined'
+    ]
   },
   {
-    id: 'service-menu',
-    title: 'Choose Your Service Menu',
-    duration: '1-2 hours',
-    description: 'Select 2-3 high-impact offers from 15 ready-made consulting and coaching services that align with your unique strengths and Ideal Client Avatar.',
-  },
-  {
-    id: 'market-validation',
-    title: '7-Day Market Validation Sprint',
-    duration: '1 week',
-    description: 'Implement a practical 7-day market validation and client outreach plan, specifically structured to test demand, secure your first paying clients, and build momentum.',
-  },
-  {
-    id: 'revenue-roadmap',
-    title: '90-Day Revenue Roadmap',
-    duration: '90 days',
-    description: 'Transform initial validation into sustainable income with this 90-day roadmap guiding you week-by-week to consistent client acquisition and growth toward your first $5,000.',
+    id: 'day-3',
+    day: 'Day 3',
+    title: 'Finalize & Prepare for Market',
+    duration: 'Intensive Day 3',
+    description: 'Complete your business setup by integrating all systems, finalizing your marketing materials, and creating your client acquisition action plan. Leave the challenge ready to secure your first paying clients and generate your first $5,000.',
+    goals: [
+      'All systems integrated and tested',
+      'Marketing materials finalized',
+      'Client acquisition plan ready',
+      'First outreach strategy prepared'
+    ]
   },
 ] as const
 
-export const FORM_SUCCESS_MESSAGE = "🎉 Success! Check your email for your free Bedside-to-Business Blueprint download link."
+export const FORM_SUCCESS_MESSAGE = "🎉 Success! You're on the waitlist for the Bedside to Business Challenge. Check your email for next steps."
 
 export const SEO_METADATA = {
-  title: 'Bedside-to-Business Blueprint | Nurse Consulting Business Launch Guide | Timi Abiola',
-  description: 'Free blueprint for nurses to launch a profitable consulting business. Get the complete 5-step roadmap to achieve $5,000 in earnings within 90 days. Download your guide today.',
-  keywords: 'nurse consultant, nurse consulting business, healthcare consulting, nurse entrepreneur, nursing business, clinical consulting, nurse coaching, Timi Abiola, Enlightened Informatics, bedside to business',
+  title: 'Bedside to Business Challenge | 3-Day Intensive Nurse Consulting Launch | Timi Abiola',
+  description: 'Join the 3-day intensive challenge for nurses ready to launch their consulting business. Complete weeks 1-2 of our proven program and position yourself to earn your first $5,000. Limited spots available.',
+  keywords: 'nurse consultant, nurse consulting business, healthcare consulting, nurse entrepreneur, nursing business, clinical consulting, nurse coaching, business challenge, intensive program, Timi Abiola, Enlightened Informatics, bedside to business',
 } as const
