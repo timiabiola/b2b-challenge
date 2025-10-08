@@ -37,6 +37,7 @@ export function LeadCaptureSection() {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<LeadFormData>({
     resolver: zodResolver(formSchema),
   })
@@ -258,8 +259,7 @@ export function LeadCaptureSection() {
                   </Label>
                   <RadioGroup
                     onValueChange={(value) => {
-                      const event = { target: { value } }
-                      register('businessReason').onChange(event)
+                      setValue('businessReason', value, { shouldValidate: true })
                     }}
                     className="space-y-3"
                   >
