@@ -36,10 +36,10 @@ export const metadata: Metadata = {
     description: SEO_METADATA.description,
     images: [
       {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Enlightened Informatics - Transform Your Business with AI & Data",
+        url: "/timi-abiola.jpg",
+        width: 2870,
+        height: 3436,
+        alt: "Timi Abiola - AI & Informatics Expert",
       },
     ],
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: SEO_METADATA.title,
     description: SEO_METADATA.description,
     creator: "@timiabiola",
-    images: ["/og-image.png"],
+    images: ["/timi-abiola.jpg"],
   },
   robots: {
     index: true,
