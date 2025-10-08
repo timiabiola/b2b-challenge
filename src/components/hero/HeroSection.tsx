@@ -52,21 +52,21 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex justify-center items-center lg:justify-start"
             >
-              <Button
+              {/* <Button
                 size="default"
                 variant="primary"
                 onClick={handleJoinChallenge}
                 className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
               >
                 {HERO_CONTENT.ctaText}
-              </Button>
+              </Button> */}
               <Button
                 size="default"
-                variant="outline"
+                variant="primary"
                 onClick={scrollToForm}
-                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center border-2 border-[#3EC6FF] text-[#00F0FF] hover:bg-[#00F0FF]/10 hover:text-[#00F0FF]"
+                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
               >
                 {HERO_CONTENT.ctaTextSecondary}
               </Button>
