@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { AnimatedBackground } from './AnimatedBackground'
 import { HERO_CONTENT } from '@/lib/constants'
-import { trackCTAClick } from '@/lib/analytics'
 
 export function HeroSection() {
   const scrollToForm = () => {
