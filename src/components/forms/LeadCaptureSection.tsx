@@ -67,7 +67,7 @@ export function LeadCaptureSection() {
       });
 
       // Send to webhook
-      const webhookResponse = await fetch('https://services.leadconnectorhq.com/hooks/vuoXllweQOW5Mxsn8raO/webhook-trigger/d8d8d8b3-2fac-48a8-9832-33cbbf4a2b15', {
+      const webhookResponse = await fetch('https://hooks.zapier.com/hooks/catch/20915866/u5yrfbm/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
