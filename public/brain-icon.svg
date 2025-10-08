@@ -1,0 +1,53 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#0B3142"/>
+  <g opacity="1">
+    <!-- Left brain (cyan) -->
+    <path d="M150 150 Q120 180 140 220 Q130 250 150 280 Q140 310 160 340 Q150 370 180 390 L180 150 Z"
+          stroke="#00F0FF" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="d"
+               dur="3s"
+               repeatCount="indefinite"
+               values="M150 150 Q120 180 140 220 Q130 250 150 280 Q140 310 160 340 Q150 370 180 390 L180 150 Z;
+                       M150 150 Q125 185 145 225 Q135 255 155 285 Q145 315 165 345 Q155 375 185 395 L185 150 Z;
+                       M150 150 Q120 180 140 220 Q130 250 150 280 Q140 310 160 340 Q150 370 180 390 L180 150 Z"/>
+    </path>
+    <path d="M180 180 Q160 200 170 230 Q165 250 180 270 Q170 290 185 310"
+          stroke="#00F0FF" stroke-width="6" fill="none" stroke-linecap="round">
+      <animate attributeName="opacity" dur="2s" repeatCount="indefinite" values="1;0.5;1"/>
+    </path>
+    <path d="M160 200 Q150 210 155 230 Q152 245 160 260"
+          stroke="#00F0FF" stroke-width="5" fill="none" stroke-linecap="round">
+      <animate attributeName="opacity" dur="2.5s" repeatCount="indefinite" values="0.8;0.4;0.8"/>
+    </path>
+
+    <!-- Right brain (magenta) -->
+    <path d="M332 150 Q362 180 342 220 Q352 250 332 280 Q342 310 322 340 Q332 370 302 390 L302 150 Z"
+          stroke="#FF2C6D" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="d"
+               dur="3s"
+               repeatCount="indefinite"
+               values="M332 150 Q362 180 342 220 Q352 250 332 280 Q342 310 322 340 Q332 370 302 390 L302 150 Z;
+                       M332 150 Q357 185 337 225 Q347 255 327 285 Q337 315 317 345 Q327 375 297 395 L297 150 Z;
+                       M332 150 Q362 180 342 220 Q352 250 332 280 Q342 310 322 340 Q332 370 302 390 L302 150 Z"/>
+    </path>
+    <path d="M302 180 Q322 200 312 230 Q317 250 302 270 Q312 290 297 310"
+          stroke="#FF2C6D" stroke-width="6" fill="none" stroke-linecap="round">
+      <animate attributeName="opacity" dur="2.2s" repeatCount="indefinite" values="1;0.5;1"/>
+    </path>
+    <path d="M322 200 Q332 210 327 230 Q330 245 322 260"
+          stroke="#FF2C6D" stroke-width="5" fill="none" stroke-linecap="round">
+      <animate attributeName="opacity" dur="2.7s" repeatCount="indefinite" values="0.8;0.4;0.8"/>
+    </path>
+
+    <!-- Connecting paths -->
+    <path d="M180 200 Q241 190 302 200" stroke="#3EC6FF" stroke-width="4" fill="none" opacity="0.6">
+      <animate attributeName="opacity" dur="1.8s" repeatCount="indefinite" values="0.6;0.3;0.6"/>
+    </path>
+    <path d="M180 270 Q241 280 302 270" stroke="#3EC6FF" stroke-width="4" fill="none" opacity="0.6">
+      <animate attributeName="opacity" dur="2.3s" repeatCount="indefinite" values="0.6;0.3;0.6"/>
+    </path>
+    <path d="M180 340 Q241 350 302 340" stroke="#3EC6FF" stroke-width="4" fill="none" opacity="0.6">
+      <animate attributeName="opacity" dur="2.1s" repeatCount="indefinite" values="0.6;0.3;0.6"/>
+    </path>
+  </g>
+</svg>

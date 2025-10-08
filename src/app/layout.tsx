@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Timi Abiola" }],
   creator: "Enlightened Informatics",
   publisher: "Enlightened Informatics",
+  icons: {
+    icon: [
+      { url: '/brain-icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/brain-icon.svg', type: 'image/svg+xml' },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
