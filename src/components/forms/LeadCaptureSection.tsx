@@ -108,6 +108,11 @@ export function LeadCaptureSection() {
       toast.success('🎉 Success! You\'re on the waitlist!', {
         description: 'Check your email for confirmation and we\'ll notify you as soon as the next challenge opens.',
         duration: 5000,
+        style: {
+          background: '#0B3142',
+          color: '#FFFFFF',
+          border: '1px solid #3EC6FF',
+        },
       })
       reset()
 
