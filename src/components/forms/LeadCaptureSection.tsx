@@ -113,6 +113,7 @@ export function LeadCaptureSection() {
           color: '#FFFFFF',
           border: '1px solid #3EC6FF',
         },
+        className: 'toast-success-custom',
       })
       reset()
 

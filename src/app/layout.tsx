@@ -83,7 +83,7 @@ export default function RootLayout({
               backdropFilter: 'blur(10px)',
               boxShadow: '0 20px 40px rgba(0, 240, 255, 0.3)',
             },
-            descriptionClassName: 'text-white text-base mt-1 font-medium',
+            descriptionClassName: '!text-white !opacity-100 text-base mt-1 font-medium',
           }}
         />
       </body>
