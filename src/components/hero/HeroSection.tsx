@@ -13,9 +13,9 @@ export function HeroSection() {
     formElement?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const handleJoinChallenge = () => {
-    window.location.href = 'https://buy.stripe.com/eVqaEX83kfdyaCJaIrcAo06'
-  }
+  // const handleJoinChallenge = () => {
+  //   window.location.href = 'https://buy.stripe.com/eVqaEX83kfdyaCJaIrcAo06'
+  // }
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
