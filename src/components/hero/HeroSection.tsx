@@ -14,6 +14,10 @@ export function HeroSection() {
     formElement?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleJoinChallenge = () => {
+    window.location.href = 'https://buy.stripe.com/eVqaEX83kfdyaCJaIrcAo06'
+  }
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <AnimatedBackground />
@@ -54,7 +58,7 @@ export function HeroSection() {
               <Button
                 size="default"
                 variant="primary"
-                onClick={scrollToForm}
+                onClick={handleJoinChallenge}
                 className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
               >
                 {HERO_CONTENT.ctaText}
