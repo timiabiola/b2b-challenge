@@ -2,7 +2,7 @@ export interface LeadFormData {
   firstName: string
   lastName: string
   email: string
-  phone: string
+  linkedinUrl?: string
   businessReason: string
 }
 

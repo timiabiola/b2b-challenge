@@ -24,9 +24,7 @@ const formSchema = z.object({
   email: z.string()
     .email('Please enter a valid email address')
     .min(1, 'Email is required'),
-  phone: z.string()
-    .min(10, 'Please enter a valid phone number')
-    .regex(/^[\d\s\-\(\)]+$/, 'Please enter a valid phone number'),
+  linkedinUrl: z.string().optional(),
   businessReason: z.string()
     .min(1, 'Please select a reason'),
 })
@@ -52,7 +50,7 @@ export function LeadCaptureSection() {
         first_name: data.firstName,
         last_name: data.lastName,
         email: data.email,
-        phone: data.phone,
+        linkedin_url: data.linkedinUrl || '',
         business_reason: data.businessReason,
         blueprint_request: 'Bedside to Business Challenge Waitlist',
         submission_id: crypto.randomUUID(),
@@ -236,20 +234,20 @@ export function LeadCaptureSection() {
                   )}
                 </div>
 
-                {/* Phone Number */}
+                {/* LinkedIn Profile URL */}
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-[#FFF6D6] text-base">
-                    Your Best Phone Number*
+                  <Label htmlFor="linkedinUrl" className="text-[#FFF6D6] text-base">
+                    LinkedIn Profile URL
                   </Label>
                   <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="(555) 123-4567"
+                    id="linkedinUrl"
+                    type="url"
+                    placeholder="https://www.linkedin.com/in/yourprofile"
                     className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
-                    {...register('phone')}
+                    {...register('linkedinUrl')}
                   />
-                  {errors.phone && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.phone.message}</p>
+                  {errors.linkedinUrl && (
+                    <p className="text-sm text-[#FF2C6D]">{errors.linkedinUrl.message}</p>
                   )}
                 </div>
 
