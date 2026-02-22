@@ -3,140 +3,105 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
-import { Badge } from '@/components/ui/badge'
-import { TrendingUp, DollarSign, Users } from 'lucide-react'
+import { ceAnimations } from '@/lib/utils'
 
 export function MarketOpportunitySection() {
   return (
-    <Section variant="dark" id="market-opportunity" className="relative">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 25% 25%, #00F0FF 0%, transparent 50%), radial-gradient(circle at 75% 75%, #FF2C6D 0%, transparent 50%)',
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <Badge variant="cyan" className="mb-4">
-            Market Opportunity
-          </Badge>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
-            Seize the Market Opportunity
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto">
-            The demand for nurse professionals is projected to grow significantly, creating a robust market for expert consulting services.
-          </p>
-        </motion.div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Stat 1: Market Growth */}
+    <Section variant="elevated" id="market-opportunity" watermark="02" watermarkPosition="left">
+      <div className="max-w-7xl mx-auto">
+        {/* Top: Asymmetric Grid - Header Left, Featured Stat Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+          {/* LEFT: Section header - left aligned */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative group"
+            className="lg:col-span-5"
+            {...ceAnimations.reveal}
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#00F0FF] to-[#3EC6FF] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
-            <div className="relative bg-gradient-to-br from-[#0B3142]/90 to-[#2B174C]/90 rounded-2xl p-6 sm:p-8 border border-[#3EC6FF]/20 backdrop-blur-sm h-full">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-[#00F0FF]/20 flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 text-[#00F0FF]" />
-                </div>
-              </div>
-              <div className="mb-2">
-                <span className="text-4xl sm:text-5xl font-bold text-[#00F0FF]">5%</span>
-              </div>
-              <p className="text-white/80 text-sm sm:text-base">
-                Projected growth in demand for nurse professionals through 2034
-              </p>
-            </div>
+            <span className="ce-label mb-4 block">Market Opportunity</span>
+            <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-[#f8f4e9] mb-4">
+              The Market Is Already Paying for What You Know
+            </h2>
+            <p className="text-base sm:text-lg text-[#f8f4e9]/70 max-w-lg leading-relaxed">
+              Healthcare organizations are paying premium rates for clinical expertise. The only thing missing is your business.
+            </p>
           </motion.div>
 
-          {/* Stat 2: Earning Potential */}
+          {/* RIGHT: Featured stat card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative group"
+            className="lg:col-span-7"
+            {...ceAnimations.slideRight}
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#FF2C6D] to-[#00F0FF] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
-            <div className="relative bg-gradient-to-br from-[#0B3142]/90 to-[#2B174C]/90 rounded-2xl p-6 sm:p-8 border border-[#3EC6FF]/20 backdrop-blur-sm h-full">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-[#FF2C6D]/20 flex items-center justify-center">
-                  <DollarSign className="w-6 h-6 sm:w-7 sm:h-7 text-[#FF2C6D]" />
-                </div>
+            <div className="ce-card rounded-2xl p-8 lg:p-12 relative overflow-hidden">
+              <div className="mb-4">
+                <span className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-light text-[#e5b94c] leading-tight block">
+                  Your Clinical Skills Are Worth More Than a Paycheck
+                </span>
               </div>
-              <div className="mb-2">
-                <span className="text-3xl sm:text-4xl font-bold text-[#FF2C6D]">$85-$250</span>
-                <span className="text-white/60 text-sm ml-1">/hour</span>
-              </div>
-              <p className="text-white/80 text-sm sm:text-base">
-                Typical hourly rate range for experienced nurse consultants
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Stat 3: Market Demand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative group"
-          >
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#3EC6FF] to-[#FF2C6D] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
-            <div className="relative bg-gradient-to-br from-[#0B3142]/90 to-[#2B174C]/90 rounded-2xl p-6 sm:p-8 border border-[#3EC6FF]/20 backdrop-blur-sm h-full">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-[#3EC6FF]/20 flex items-center justify-center">
-                  <Users className="w-6 h-6 sm:w-7 sm:h-7 text-[#3EC6FF]" />
-                </div>
-              </div>
-              <div className="mb-2">
-                <span className="text-2xl sm:text-3xl font-bold text-[#3EC6FF]">High Demand</span>
-              </div>
-              <p className="text-white/80 text-sm sm:text-base">
-                Hospitals, insurance providers, and healthcare organizations are actively seeking specialized nursing insights
+              <p className="text-[#f8f4e9]/60 text-base max-w-md">
+                Nurse consultants set their own rates and work on their own terms. The demand is real, and organizations are paying for expertise they can&apos;t find in-house.
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          className="text-center mt-12 sm:mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <p className="text-base sm:text-lg text-white/80 mb-6">
-            Your clinical experience is more valuable than you think. It&apos;s time to turn it into a thriving consulting business.
-          </p>
+        {/* Below Featured: Two smaller stat cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 mb-16">
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            {...ceAnimations.reveal}
+            transition={{ ...ceAnimations.reveal.transition, delay: 0.2 }}
           >
+            <div className="ce-card rounded-2xl p-6 sm:p-8 h-full">
+              <span className="ce-label block mb-3">Growing Demand</span>
+              <div className="mb-2">
+                <span className="font-serif text-5xl lg:text-6xl font-light text-[#e5b94c]">5%</span>
+              </div>
+              <p className="text-[#f8f4e9]/60 text-sm sm:text-base">
+                Demand for nurse consultants is climbing through 2034, per the Bureau of Labor Statistics. The window is open.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...ceAnimations.reveal}
+            transition={{ ...ceAnimations.reveal.transition, delay: 0.3 }}
+          >
+            <div className="ce-card rounded-2xl p-6 sm:p-8 h-full">
+              <span className="ce-label block mb-3">Who&apos;s Hiring</span>
+              <div className="mb-2">
+                <span className="font-serif text-4xl lg:text-5xl font-light text-[#e5b94c]">Everyone</span>
+              </div>
+              <p className="text-[#f8f4e9]/60 text-sm sm:text-base">
+                Hospitals, insurers, law firms, and health tech companies. They need clinical insight they can&apos;t get from anyone but a nurse.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom: Pull quote */}
+        <motion.div
+          className="relative py-12 lg:py-16"
+          {...ceAnimations.reveal}
+          transition={{ ...ceAnimations.reveal.transition, delay: 0.4 }}
+        >
+          {/* Giant decorative quote mark */}
+          <div
+            className="absolute top-0 left-0 font-serif text-[12rem] leading-none text-[#e5b94c] opacity-[0.08] pointer-events-none select-none"
+            aria-hidden="true"
+          >
+            &ldquo;
+          </div>
+
+          <div className="relative max-w-3xl mx-auto lg:mx-0 lg:pl-16">
+            <p className="font-serif text-xl lg:text-2xl italic text-[#e5b94c] leading-relaxed mb-8">
+              Your years at the bedside gave you something no textbook can teach. It&apos;s time that expertise started paying you what it&apos;s worth.
+            </p>
             <a
               href="#lead-form"
-              className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold text-base sm:text-lg"
+              className="inline-flex items-center gap-2 text-[#e5b94c] hover:text-[#f8f4e9] transition-colors duration-400 font-semibold text-base sm:text-lg py-3"
             >
-              Get Your Free Blueprint Now
-              <span className="text-xl">→</span>
+              Join the Waitlist
+              <span className="text-xl">&rarr;</span>
             </a>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </Section>

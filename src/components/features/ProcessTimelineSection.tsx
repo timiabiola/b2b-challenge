@@ -1,234 +1,234 @@
 'use client'
 
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useRef, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { CHALLENGE_DAYS } from '@/lib/constants'
-import { CheckCircle, Target } from 'lucide-react'
+import { ceAnimations } from '@/lib/utils'
+
+const panelBgs = ['bg-[#120925]', 'bg-[#1a0f32]', 'bg-[#120925]']
 
 export function ProcessTimelineSection() {
-  return (
-    <Section variant="dark" id="process" className="relative">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div 
-          className="absolute inset-0" 
-          style={{
-            backgroundImage: 'radial-gradient(circle at 25% 25%, #00F0FF 0%, transparent 50%), radial-gradient(circle at 75% 75%, #FF2C6D 0%, transparent 50%)',
-          }}
-        />
-      </div>
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-      <div className="relative z-10 max-w-4xl mx-auto">
+  // Detect touch device on mount
+  React.useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
+
+  const handleMouseEnter = useCallback((index: number) => {
+    if (isTouchDevice) return
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredIndex(index)
+    }, 200)
+  }, [isTouchDevice])
+
+  const handleMouseLeave = useCallback(() => {
+    if (isTouchDevice) return
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+    setHoveredIndex(null)
+  }, [isTouchDevice])
+
+  const handleTap = useCallback((index: number) => {
+    if (!isTouchDevice) return
+    setTappedIndex(prev => prev === index ? null : index)
+  }, [isTouchDevice])
+
+  return (
+    <Section variant="default" id="process" watermark="06" padding="normal">
+      <div className="max-w-7xl mx-auto">
+        {/* Section header - left aligned */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
+          {...ceAnimations.reveal}
+          className="mb-12 lg:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFF6D6] mb-3 sm:mb-4">
+          <span className="ce-label mb-4 block">The 3-Day Breakdown</span>
+          <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-[#f8f4e9] mb-4">
             Your 3-Day Challenge Breakdown
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-white/80">
-            From nurse to consultant in 3 intensive days. Focused. Transformative. Results-driven.
+          <p className="text-base sm:text-lg text-[#f8f4e9]/70 max-w-2xl">
+            Here&apos;s exactly what happens each day, so you know what to expect and can hit the ground running.
           </p>
         </motion.div>
 
-        {/* Mobile and Tablet View (Cards) */}
-        <div className="block lg:hidden">
-          <div className="space-y-4 sm:space-y-6">
-            {CHALLENGE_DAYS.map((day, index) => (
+        {/* Horizontal Triptych with hover reveal */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 rounded-2xl overflow-hidden border border-[rgba(248,244,233,0.06)]">
+          {CHALLENGE_DAYS.map((day, index) => {
+            const isHovered = isTouchDevice ? tappedIndex === index : hoveredIndex === index
+
+            return (
               <motion.div
                 key={day.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`relative min-h-[320px] lg:min-h-[460px] flex flex-col p-6 lg:p-8 cursor-default transition-colors duration-500 ${
+                  isHovered ? 'bg-[#1a0f32]' : panelBgs[index]
+                }`}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleTap(index)}
+                {...ceAnimations.reveal}
+                transition={{ ...ceAnimations.reveal.transition, delay: index * 0.15 }}
               >
-                <Card className="relative overflow-hidden bg-gradient-to-br from-[#0B3142]/90 to-[#2B174C]/90 border-[#3EC6FF]/20 backdrop-blur-sm hover:border-[#00F0FF]/40 transition-all duration-300">
-                  {/* Day Badge */}
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-                    <Badge className="bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] text-white font-bold px-3 py-1">
-                      {day.day}
-                    </Badge>
-                  </div>
-
-                  {/* Day Number Circle */}
-                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                    <div className="relative">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center">
-                        <span className="text-white font-bold text-lg sm:text-xl">
-                          {index + 1}
-                        </span>
-                      </div>
-                      {/* Pulse effect */}
-                      <motion.div
-                        className="absolute inset-0 rounded-full bg-[#00F0FF]/20"
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                      />
-                    </div>
-                  </div>
-
-                  <CardContent className="pt-4 pb-5 pl-20 pr-4 sm:pt-6 sm:pb-6 sm:pl-24 sm:pr-6">
-                    {/* Header with Title */}
-                    <div className="mb-3">
-                      <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6D6] leading-tight text-center sm:text-left">
-                        {day.title}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-sm sm:text-base text-white/80 mb-4 leading-relaxed text-center sm:text-left">
-                      {day.description}
-                    </p>
-
-                    {/* Goals List */}
-                    <div className="space-y-2 mb-4">
-                      {day.goals.map((goal, goalIndex) => (
-                        <div key={goalIndex} className="flex items-start gap-2">
-                          <Target className="w-4 h-4 text-[#00F0FF] flex-shrink-0 mt-0.5" />
-                          <span className="text-xs sm:text-sm text-white/70">{goal}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Day Indicator */}
-                    <div className="flex items-center gap-2 justify-center sm:justify-start">
-                      <CheckCircle className="w-4 h-4 text-[#3EC6FF]" />
-                      <span className="text-xs sm:text-sm text-[#3EC6FF]">
-                        Day {index + 1} of 3
-                      </span>
-                    </div>
-                  </CardContent>
-
-                  {/* Progress Bar at Bottom */}
-                  <div className="h-1 bg-[#0B3142]">
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-[#00F0FF] to-[#3EC6FF]"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${((index + 1) / CHALLENGE_DAYS.length) * 100}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
-                    />
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop View (Original Timeline) */}
-        <div className="hidden lg:block">
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00F0FF] via-[#3EC6FF] to-[#FF2C6D]" />
-
-            {/* Timeline items */}
-            <div className="space-y-12">
-              {CHALLENGE_DAYS.map((day, index) => (
-                <motion.div
-                  key={day.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative flex items-start gap-6"
+                {/* Giant day number watermark - top right */}
+                <div
+                  className="absolute top-4 right-4 font-serif text-[8rem] lg:text-[12rem] leading-none text-[#f8f4e9] opacity-[0.02] pointer-events-none select-none"
+                  aria-hidden="true"
                 >
-                  {/* Day indicator */}
-                  <div className="relative z-10 flex-shrink-0">
-                    <motion.div
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] flex items-center justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <span className="text-white font-bold text-lg">
-                        {index + 1}
-                      </span>
-                    </motion.div>
+                  {index + 1}
+                </div>
 
-                    {/* Pulse effect */}
+                {/* Vertical gold divider between panels on desktop */}
+                {index > 0 && (
+                  <div className="hidden lg:block absolute left-0 top-[10%] bottom-[10%] w-px bg-[#e5b94c]/15" />
+                )}
+
+                {/* Horizontal rule between panels on mobile */}
+                {index > 0 && (
+                  <div className="lg:hidden absolute top-0 left-[10%] right-[10%] h-px bg-[#e5b94c]/15" />
+                )}
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Top: Day label + Title (always visible) */}
+                  <div>
+                    <span className="ce-label block mb-3">{day.day}</span>
+
+                    <h3 className="font-serif text-xl sm:text-2xl text-[#f8f4e9] mb-3 leading-tight">
+                      {day.title}
+                    </h3>
+
+                    {/* Gold accent line - subtle breathing pulse when not hovered */}
                     <motion.div
-                      className="absolute inset-0 rounded-full bg-[#00F0FF]/20"
-                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                      className="ce-accent-line w-16 mb-4"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.0, delay: 0.3 + index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ transformOrigin: 'left' }}
                     />
+
+                    {/* Editorial hover cue - fades out when hovered */}
+                    <AnimatePresence>
+                      {!isHovered && (
+                        <motion.div
+                          className="flex items-center gap-2 mt-1"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          <motion.span
+                            className="text-[0.7rem] tracking-[0.2em] uppercase text-[#e5b94c]/60 font-serif hidden lg:inline"
+                            animate={{ opacity: [0.6, 0.9, 0.6] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                          >
+                            Hover to explore
+                          </motion.span>
+                          <motion.span
+                            className="text-[0.7rem] tracking-[0.2em] uppercase text-[#e5b94c]/60 font-serif lg:hidden"
+                            animate={{ opacity: [0.6, 0.9, 0.6] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                          >
+                            Tap to explore
+                          </motion.span>
+                          <motion.span
+                            className="text-[#e5b94c]/50 text-xs"
+                            animate={{ x: [0, 3, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                          >
+                            &rarr;
+                          </motion.span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <motion.div
-                      className={`bg-gradient-to-br from-[#0B3142] to-[#2B174C] rounded-xl p-6 border border-[#3EC6FF]/20 ${
-                        index % 2 === 0 ? 'lg:ml-0' : 'lg:ml-12'
-                      }`}
-                      whileHover={{
-                        borderColor: 'rgba(0, 240, 255, 0.5)',
-                        boxShadow: '0 10px 30px -10px rgba(0, 240, 255, 0.3)'
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-2xl font-bold text-[#FFF6D6]">
-                          {day.title}
-                        </h3>
-                        <Badge className="bg-gradient-to-br from-[#00F0FF] to-[#FF2C6D] text-white font-bold">
-                          {day.day}
-                        </Badge>
-                      </div>
-
-                      <p className="text-white/80 mb-4">
-                        {day.description}
-                      </p>
-
-                      {/* Goals List */}
-                      <div className="space-y-2 mb-4">
-                        {day.goals.map((goal, goalIndex) => (
-                          <div key={goalIndex} className="flex items-start gap-2">
-                            <Target className="w-4 h-4 text-[#00F0FF] flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-white/70">{goal}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Progress indicators */}
-                      <div className="flex items-center gap-2 text-sm text-[#3EC6FF]">
-                        <CheckCircle className="w-4 h-4" />
-                        <span>Day {index + 1} of 3</span>
-                      </div>
-                    </motion.div>
+                  {/* Middle: Swap between description (default) and goals (hover) */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    <AnimatePresence mode="wait">
+                      {!isHovered ? (
+                        /* Default state: description blurb */
+                        <motion.div
+                          key={`desc-${day.id}`}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          <p className="text-sm sm:text-base text-[#f8f4e9]/60 leading-relaxed">
+                            {day.description}
+                          </p>
+                        </motion.div>
+                      ) : (
+                        /* Hovered state: goals revealed with stagger */
+                        <motion.div
+                          key={`goals-${day.id}`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="space-y-3"
+                        >
+                          <span className="text-xs text-[#e5b94c]/60 tracking-[0.15em] uppercase block mb-2">
+                            What you&apos;ll complete
+                          </span>
+                          {day.goals.map((goal, goalIndex) => (
+                            <motion.div
+                              key={goalIndex}
+                              className="flex items-start gap-3"
+                              initial={{ opacity: 0, x: -12 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{
+                                duration: 0.4,
+                                delay: goalIndex * 0.08,
+                                ease: [0.22, 1, 0.36, 1],
+                              }}
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#e5b94c]/60 flex-shrink-0 mt-[0.35rem]" />
+                              <span className="text-sm leading-[1.25rem] text-[#f8f4e9]/70">{goal}</span>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+
+                  {/* Bottom: Folio */}
+                  <div className="mt-auto pt-4">
+                    <span className="ce-folio">
+                      Day {index + 1} of 3
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Bottom CTA */}
         <motion.div
-          className="text-center mt-12 sm:mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 lg:mt-16"
+          {...ceAnimations.reveal}
+          transition={{ ...ceAnimations.reveal.transition, delay: 0.5 }}
         >
-          <p className="text-base sm:text-lg text-white/80 mb-6">
-            Stop second-guessing your potential. Join the waitlist and be the first to know when the next challenge launches.
+          <p className="text-base sm:text-lg text-[#f8f4e9]/70 mb-6 max-w-3xl">
+            You&apos;ve already proven you can handle 12-hour shifts, complex patients, and high-pressure decisions. Launching a business? You&apos;ve got this. Join the waitlist and we&apos;ll save your spot.
           </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <a
+            href="#lead-form"
+            className="inline-flex items-center gap-2 text-[#e5b94c] hover:text-[#f8f4e9] transition-colors duration-400 font-semibold text-base sm:text-lg py-3"
           >
-            <a
-              href="#lead-form"
-              className="inline-flex items-center gap-2 text-[#00F0FF] hover:text-[#FF2C6D] transition-colors duration-200 font-semibold text-base sm:text-lg"
-            >
-              Join the Waitlist
-              <span className="text-xl">→</span>
-            </a>
-          </motion.div>
+            Join the Waitlist
+            <span className="text-xl">&rarr;</span>
+          </a>
         </motion.div>
       </div>
     </Section>

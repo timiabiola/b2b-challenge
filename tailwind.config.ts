@@ -16,14 +16,23 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        serif: ["var(--font-fraunces)", "Fraunces", "Georgia", "serif"],
+        sans: ["var(--font-jakarta)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
+      },
+      fontSize: {
+        "display-lg": ["clamp(3.5rem, 8vw, 7rem)", { lineHeight: "0.95", letterSpacing: "-0.02em" }],
+        "display-md": ["clamp(2.5rem, 5vw, 4.5rem)", { lineHeight: "1.0", letterSpacing: "-0.015em" }],
+        "display-sm": ["clamp(2rem, 4vw, 3.25rem)", { lineHeight: "1.05", letterSpacing: "-0.01em" }],
+      },
       colors: {
         brand: {
-          navy: "#0B3142",
-          purple: "#2B174C",
-          cyan: "#00F0FF",
-          magenta: "#FF2C6D",
-          cream: "#FFF6D6",
-          accent: "#3EC6FF",
+          midnight: "#120925",
+          elevated: "#1a0f32",
+          cream: "#f8f4e9",
+          gold: "#e5b94c",
+          plum: "#2a1340",
+          plumDeep: "#0d0620",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -73,25 +82,25 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        shimmer: {
-          "100%": {
-            transform: "translateX(100%)",
-          },
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(24px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
-        pulse: {
-          "0%, 100%": {
-            opacity: "1",
-          },
-          "50%": {
-            opacity: "0.5",
-          },
+        "reveal-line": {
+          from: { scaleX: "0" },
+          to: { scaleX: "1" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.15" },
+          "50%": { opacity: "0.3" },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        shimmer: "shimmer 2s infinite",
-        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "accordion-down": "accordion-down 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+        "accordion-up": "accordion-up 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+        "fade-in-up": "fade-in-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "reveal-line": "reveal-line 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "glow-pulse": "glow-pulse 4s ease-in-out infinite",
       },
     },
   },

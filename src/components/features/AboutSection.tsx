@@ -4,63 +4,55 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/layout/Section'
 import { ABOUT_CONTENT } from '@/lib/constants'
-import { Badge } from '@/components/ui/badge'
+import { ceAnimations } from '@/lib/utils'
 
 export function AboutSection() {
   return (
-    <Section variant="dark" id="about" className="relative">
-      {/* Background texture */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233EC6FF' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
+    <Section variant="default" id="about" watermark="03">
+      <div className="max-w-7xl mx-auto">
+        {/* Full-width headline */}
+        <motion.h2
+          className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] text-[#f8f4e9] mb-6"
+          {...ceAnimations.reveal}
+        >
+          Your Nursing Experience Is Worth More Than You Realize
+        </motion.h2>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-5 gap-12 items-center">
-          {/* Text Content - Takes up 3 columns */}
-          <motion.div 
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+        {/* Gold accent line */}
+        <motion.div
+          className="ce-accent-line w-32 mb-12 lg:mb-16"
+          {...ceAnimations.lineGrow}
+        />
+
+        {/* Two-column layout: article body + sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Article body - cols 1-7 */}
+          <motion.div
+            className="lg:col-span-7"
+            {...ceAnimations.slideLeft}
           >
-            <motion.h2
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-6 sm:mb-8 text-center lg:text-left"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Your Nursing Experience Is Worth More Than You Realize
-            </motion.h2>
-
-            <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/90 leading-relaxed text-center lg:text-left">
+            <div className="space-y-6 text-base sm:text-lg text-[#f8f4e9]/80 leading-relaxed">
+              {/* First paragraph with drop cap */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                className="ce-drop-cap"
+                {...ceAnimations.reveal}
+                transition={{ ...ceAnimations.reveal.transition, delay: 0.1 }}
               >
                 {ABOUT_CONTENT.paragraph1}
               </motion.p>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                {...ceAnimations.reveal}
+                transition={{ ...ceAnimations.reveal.transition, delay: 0.2 }}
               >
                 {ABOUT_CONTENT.paragraph2}
               </motion.p>
 
+              {/* Third paragraph as pull quote */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="font-semibold text-[#00F0FF]"
+                {...ceAnimations.reveal}
+                transition={{ ...ceAnimations.reveal.transition, delay: 0.3 }}
+                className="ce-pull-quote"
               >
                 {ABOUT_CONTENT.paragraph3}
               </motion.p>
@@ -68,85 +60,74 @@ export function AboutSection() {
 
             {/* Credibility indicators */}
             <motion.div
-              className="mt-8 flex flex-wrap gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-10 flex flex-wrap gap-6"
+              {...ceAnimations.reveal}
+              transition={{ ...ceAnimations.reveal.transition, delay: 0.4 }}
             >
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#00F0FF] rounded-full" />
-                <span className="text-white/80">Nurse-Specific Framework</span>
+                <div className="w-4 h-[2px] bg-[#e5b94c]" />
+                <span className="text-[#f8f4e9]/70">Nurse-Specific Framework</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#FF2C6D] rounded-full" />
-                <span className="text-white/80">90-Day Action Plan</span>
+                <div className="w-4 h-[2px] bg-[#e5b94c]" />
+                <span className="text-[#f8f4e9]/70">90-Day Action Plan</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#3EC6FF] rounded-full" />
-                <span className="text-white/80">Proven Results</span>
+                <div className="w-4 h-[2px] bg-[#e5b94c]" />
+                <span className="text-[#f8f4e9]/70">Proven Results</span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Visual Element - Takes up 2 columns */}
-          <motion.div 
-            className="lg:col-span-2"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          {/* Sidebar - cols 8-12 */}
+          <motion.div
+            className="lg:col-span-5"
+            {...ceAnimations.scaleReveal}
           >
-            <div className="relative">
-              {/* Stats Card */}
-              <div className="bg-gradient-to-br from-[#00F0FF]/10 to-[#FF2C6D]/10 backdrop-blur-sm rounded-2xl p-8 border border-[#3EC6FF]/30">
-                <h3 className="text-2xl font-bold text-[#FFF6D6] mb-6">The Blueprint Advantage</h3>
+            <div className="lg:sticky lg:top-32">
+              <div className="border-l-2 border-[#e5b94c]/20 pl-8 py-2">
+                <h3 className="text-2xl font-bold text-[#f8f4e9] font-serif mb-8">
+                  The Blueprint Advantage
+                </h3>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-3">
-                    <Badge className="h-8 w-8 rounded-full bg-[#00F0FF] text-[#0B3142] hover:bg-[#00F0FF] flex items-center justify-center font-bold text-sm">
+                <div className="space-y-8">
+                  <div className="flex items-start gap-5">
+                    <span className="font-serif text-4xl text-[#e5b94c]/40 leading-none flex-shrink-0 mt-1">
                       1
-                    </Badge>
+                    </span>
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white">Quick Niche Assessment</h4>
-                      <p className="text-sm text-white/70 mt-1">Identify your ideal consulting specialty in 20 minutes</p>
+                      <h4 className="text-lg font-semibold text-[#f8f4e9]">Quick Niche Assessment</h4>
+                      <p className="text-sm text-[#f8f4e9]/60 mt-1">Identify your ideal consulting specialty in 20 minutes</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <Badge className="h-8 w-8 rounded-full bg-[#FF2C6D] text-white hover:bg-[#FF2C6D] flex items-center justify-center font-bold text-sm">
+                  <div className="flex items-start gap-5">
+                    <span className="font-serif text-4xl text-[#e5b94c]/40 leading-none flex-shrink-0 mt-1">
                       2
-                    </Badge>
+                    </span>
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white">15 Service Models</h4>
-                      <p className="text-sm text-white/70 mt-1">Ready-made offers with proven pricing strategies</p>
+                      <h4 className="text-lg font-semibold text-[#f8f4e9]">15 Service Models</h4>
+                      <p className="text-sm text-[#f8f4e9]/60 mt-1">Ready-made offers with proven pricing strategies</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <Badge className="h-8 w-8 rounded-full bg-[#3EC6FF] text-[#0B3142] hover:bg-[#3EC6FF] flex items-center justify-center font-bold text-sm">
+                  <div className="flex items-start gap-5">
+                    <span className="font-serif text-4xl text-[#e5b94c]/40 leading-none flex-shrink-0 mt-1">
                       3
-                    </Badge>
+                    </span>
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white">90-Day Action Plan</h4>
-                      <p className="text-sm text-white/70 mt-1">Week-by-week roadmap to your first $5,000</p>
+                      <h4 className="text-lg font-semibold text-[#f8f4e9]">90-Day Action Plan</h4>
+                      <p className="text-sm text-[#f8f4e9]/60 mt-1">Week-by-week roadmap to your first $5,000</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-[#3EC6FF]/20">
-                  <p className="text-sm text-white/70 italic text-center">
+                <div className="mt-8 pt-6 border-t border-[rgba(248,244,233,0.08)]">
+                  <p className="text-sm text-[#f8f4e9]/60 italic font-serif text-center">
                     From Bedside to Business: Your Complete Launch Guide
                   </p>
                 </div>
               </div>
-
-              {/* Floating accent */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-20 h-20 bg-[#00F0FF]/20 rounded-full blur-2xl"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
             </div>
           </motion.div>
         </div>

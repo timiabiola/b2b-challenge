@@ -1,12 +1,10 @@
 export const BRAND_COLORS = {
-  deepNavyBlue: '#0B3142',
-  deepPurple: '#2B174C',
-  electricCyan: '#00F0FF',
-  vibrantMagenta: '#FF2C6D',
-  softCream: '#FFF6D6',
-  accentBlue: '#3EC6FF',
-  pureWhite: '#FFFFFF',
-  darkGray: '#1A1A1A',
+  midnight: '#120925',
+  elevated: '#1a0f32',
+  cream: '#f8f4e9',
+  gold: '#e5b94c',
+  plum: '#2a1340',
+  plumDeep: '#0d0620',
 } as const
 
 export const COMPANY_INFO = {
@@ -17,16 +15,16 @@ export const COMPANY_INFO = {
 } as const
 
 export const HERO_CONTENT = {
-  headline: 'Launch Your Nurse Consulting Business in 3 Intensive Days',
-  subheadline: "Join the Bedside to Business Challenge—a focused 3-day intensive where you'll complete your foundation setup, define your offers, and position yourself to land your first clients. Everything you need to go from nurse to consultant, fast.",
+  headline: "You Didn't Spend Years at the Bedside to Stay Stuck There",
+  subheadline: "Join the 3-Day Bedside to Business Challenge and walk away with a fully launched consulting business: your niche defined, your offers priced, and your first clients in sight.",
   ctaText: 'Join the Challenge →',
-  ctaTextSecondary: 'Join the Waitlist',
+  ctaTextSecondary: 'Join the Waitlist →',
 } as const
 
 export const ABOUT_CONTENT = {
-  paragraph1: "This 3-day intensive challenge condenses weeks 1-2 of our proven 90-day program into a transformative experience designed specifically for nurses ready to launch their consulting business.",
-  paragraph2: "The need for nurse experts is growing fast (projected 5% growth through 2034), and organizations are willing to pay for your knowledge. Nurse consultants typically earn $85–$250 an hour, offering insights that hospitals, insurers, and healthcare systems can't get anywhere else.",
-  paragraph3: "Stop doubting your value. The Bedside to Business Challenge gives you the intensive support, clear action steps, and accountability you need to launch your consulting practice in just 3 days.",
+  paragraph1: "You've spent years giving everything to your patients. But the long shifts, the burnout, the feeling that your expertise deserves more? That's real. The Bedside to Business Challenge is a focused 3-day intensive designed to turn that expertise into a consulting business you can launch this month.",
+  paragraph2: "Nurse consultants set premium rates for their expertise, and demand is growing 5% through 2034 (Bureau of Labor Statistics). Hospitals, insurers, and healthcare systems need the clinical insights only you can provide. And they're willing to pay for them.",
+  paragraph3: "Stop waiting for permission. In 3 days, you'll have your business launched, your offers defined, and a clear path to your first $5,000.",
 } as const
 
 export const THREE_PILLARS = [
@@ -34,19 +32,19 @@ export const THREE_PILLARS = [
     id: 'foundation-setup',
     title: 'Complete Foundation Setup',
     icon: 'Brain',
-    description: "Launch your website, complete business incorporation, establish bookkeeping systems, and ensure full legal compliance—all in Day 1.",
+    description: "Launch your professional website, legally incorporate your business, set up bookkeeping, and lock in compliance. By Day 1's end, you have a real business, not just an idea.",
   },
   {
     id: 'offers-positioning',
     title: 'Define Your Offers & Positioning',
     icon: 'Rocket',
-    description: "Identify and validate your consulting packages, develop your ideal client avatar, and create a clear marketing strategy that positions you as the expert—completed on Day 2.",
+    description: "Define your consulting packages, price them with confidence, identify your perfect client, and build a marketing strategy. You'll know exactly who you serve and what you charge.",
   },
   {
     id: 'market-ready',
     title: 'Get Market-Ready',
     icon: 'Cpu',
-    description: "Finalize your business setup, integrate all systems, and prepare for immediate client acquisition with a clear action plan for your first $5,000 in earnings.",
+    description: "Integrate all your systems, finalize your marketing materials, and map out your first client outreach. You leave Day 3 ready to land paying clients.",
   },
 ] as const
 
@@ -56,12 +54,12 @@ export const CHALLENGE_DAYS = [
     day: 'Day 1',
     title: 'Launch Your Foundation',
     duration: 'Intensive Day 1',
-    description: "Build and launch your professional website, complete your business incorporation, establish bookkeeping systems, and ensure legal compliance from Day 1. You'll walk away with a fully operational business infrastructure.",
+    description: "Build and launch your professional website, legally incorporate your business, set up bookkeeping, and verify compliance. By the end of Day 1, you'll have a fully operational business. Not just a dream on paper.",
     goals: [
-      'Website launched and live',
-      'Business legally incorporated',
-      'Bookkeeping system established',
-      'Legal compliance verified'
+      'Professional website live, so clients can find you',
+      "Business legally incorporated. You're official",
+      'Bookkeeping set up. Never stress about taxes',
+      'Legal compliance locked in. Peace of mind from day one'
     ]
   },
   {
@@ -69,12 +67,12 @@ export const CHALLENGE_DAYS = [
     day: 'Day 2',
     title: 'Develop Your Offers & Ideal Client Avatar',
     duration: 'Intensive Day 2',
-    description: 'Identify and validate consulting packages based on your clinical expertise and market needs. Develop a crystal-clear ideal client avatar and create a marketing strategy that effectively positions your unique value in the healthcare landscape.',
+    description: 'Define and price your consulting packages based on your clinical expertise. Map out your perfect client profile and create a marketing strategy that positions you as the go-to expert in your specialty.',
     goals: [
       'Consulting packages defined and priced',
-      'Ideal client avatar completed',
-      'Marketing strategy developed',
-      'Value proposition refined'
+      'Perfect client profile mapped out',
+      'Marketing strategy built',
+      'Your unique selling point sharpened'
     ]
   },
   {
@@ -82,12 +80,12 @@ export const CHALLENGE_DAYS = [
     day: 'Day 3',
     title: 'Finalize & Prepare for Market',
     duration: 'Intensive Day 3',
-    description: 'Complete your business setup by integrating all systems, finalizing your marketing materials, and creating your client acquisition action plan. Leave the challenge ready to secure your first paying clients and generate your first $5,000.',
+    description: "Connect all the pieces: integrate your systems, polish your marketing materials, and create your client outreach plan. You'll leave with everything you need to land your first paying clients and hit your first $5,000.",
     goals: [
-      'All systems integrated and tested',
-      'Marketing materials finalized',
-      'Client acquisition plan ready',
-      'First outreach strategy prepared'
+      'All systems connected and tested',
+      'Marketing materials polished and ready',
+      'Client outreach plan built',
+      'First outreach messages drafted'
     ]
   },
 ] as const

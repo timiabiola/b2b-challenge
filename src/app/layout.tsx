@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { SEO_METADATA } from "@/lib/constants";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { FacebookPixel } from "@/components/analytics/FacebookPixel";
 
-const inter = Inter({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -69,7 +76,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased bg-[#0B3142] text-white`}>
+      <body className={`${fraunces.variable} ${jakarta.variable} font-sans antialiased bg-[#120925] text-[#f8f4e9]`}>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
@@ -77,21 +84,23 @@ export default function RootLayout({
           <FacebookPixel pixelId={process.env.NEXT_PUBLIC_FB_PIXEL_ID} />
         )}
         {children}
+        <div className="ce-grain" aria-hidden="true" />
         <Toaster
           position="top-center"
           toastOptions={{
-            className: 'bg-[#0B3142] border-2 border-[#00F0FF] text-white shadow-2xl shadow-[#00F0FF]/20',
+            className: 'bg-[#1a0f32] border border-[#e5b94c]/30 text-[#f8f4e9] shadow-2xl',
             style: {
-              background: 'linear-gradient(135deg, #0B3142 0%, #2B174C 100%)',
-              color: '#FFFFFF',
-              border: '2px solid #00F0FF',
+              background: '#1a0f32',
+              color: '#f8f4e9',
+              border: '1px solid rgba(229, 185, 76, 0.3)',
               fontSize: '1.1rem',
               padding: '1.25rem',
-              minWidth: '400px',
+              minWidth: 'min(90vw, 400px)',
+              maxWidth: '90vw',
               backdropFilter: 'blur(10px)',
-              boxShadow: '0 20px 40px rgba(0, 240, 255, 0.3)',
+              boxShadow: '0 20px 40px rgba(229, 185, 76, 0.1)',
             },
-            descriptionClassName: '!text-white !opacity-100 text-base mt-1 font-medium',
+            descriptionClassName: '!text-[#f8f4e9] !opacity-80 text-base mt-1 font-medium',
           }}
         />
       </body>

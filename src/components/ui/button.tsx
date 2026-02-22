@@ -5,24 +5,24 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e5b94c]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120925] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-brand-cyan text-brand-navy hover:bg-brand-magenta hover:text-white shadow-lg hover:shadow-brand-cyan/25 hover:scale-105",
+          "bg-[#e5b94c] text-[#120925] hover:shadow-lg hover:shadow-[#e5b94c]/20 font-semibold",
         primary:
-          "bg-[#00F0FF] text-[#0B3142] hover:bg-[#FF2C6D] hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-[#00F0FF]/25 hover:scale-105",
+          "bg-[#e5b94c] text-[#120925] hover:shadow-lg hover:shadow-[#e5b94c]/25 transition-all duration-400 font-semibold",
         secondary:
-          "bg-[#FF2C6D] text-white hover:bg-[#00F0FF] hover:text-[#0B3142] transition-all duration-300 shadow-lg hover:shadow-[#FF2C6D]/25 hover:scale-105",
+          "bg-transparent text-[#e5b94c] border border-[#e5b94c]/40 hover:bg-[#e5b94c] hover:text-[#120925] transition-all duration-400 font-semibold",
         destructive:
           "bg-red-500 text-white hover:bg-red-600",
         outline:
-          "border border-[#3EC6FF]/30 bg-transparent text-[#FFF6D6] hover:bg-[#3EC6FF]/10 hover:border-[#00F0FF]",
+          "border border-[rgba(248,244,233,0.15)] bg-transparent text-[#f8f4e9] hover:bg-[rgba(248,244,233,0.05)] hover:border-[#e5b94c]/40",
         ghost:
-          "text-[#FFF6D6] hover:bg-[#3EC6FF]/10 hover:text-[#00F0FF]",
+          "text-[#f8f4e9] hover:bg-[rgba(248,244,233,0.05)] hover:text-[#e5b94c]",
         link:
-          "text-[#00F0FF] underline-offset-4 hover:underline hover:text-[#FF2C6D]",
+          "text-[#e5b94c] underline-offset-4 hover:underline hover:text-[#f8f4e9]",
       },
       size: {
         default: "h-10 px-4 py-2",

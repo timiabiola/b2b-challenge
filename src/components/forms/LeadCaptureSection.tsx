@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,6 +14,7 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import type { LeadFormData } from '@/types'
 import { Loader2 } from 'lucide-react'
+import { ceAnimations } from '@/lib/utils'
 
 const formSchema = z.object({
   firstName: z.string()
@@ -106,9 +108,9 @@ export function LeadCaptureSection() {
         description: 'Check your email for confirmation and we\'ll notify you as soon as the next challenge opens.',
         duration: 5000,
         style: {
-          background: '#0B3142',
-          color: '#FFFFFF',
-          border: '1px solid #3EC6FF',
+          background: '#1a0f32',
+          color: '#f8f4e9',
+          border: '1px solid rgba(229, 185, 76, 0.3)',
         },
         className: 'toast-success-custom',
       })
@@ -133,11 +135,11 @@ export function LeadCaptureSection() {
       }
     } catch (error) {
       console.error('❌ Form submission error:', error);
-      
+
       // Provide specific error messages based on the error type
       let errorMessage = 'Oops! Something went wrong.';
       let errorDescription = 'Please try again or email us directly at contact@enlightenedinformatics.com';
-      
+
       if (error instanceof Error) {
         if (error.message.includes('Webhook failed')) {
           errorMessage = 'Submission Error';
@@ -149,7 +151,7 @@ export function LeadCaptureSection() {
           console.error('🌐 Network connectivity issue detected');
         }
       }
-      
+
       toast.error(errorMessage, {
         description: errorDescription,
         duration: 7000,
@@ -160,99 +162,147 @@ export function LeadCaptureSection() {
   }
 
   return (
-    <Section variant="gradient" id="lead-form">
-      <div className="max-w-2xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Form Card */}
-          <div className="relative">
-            {/* Gradient shadow */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#00F0FF] to-[#FF2C6D] rounded-2xl blur-lg opacity-30" />
-            
-            <div className="relative bg-[#0B3142] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-[#3EC6FF]/20">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#FFF6D6] mb-3 sm:mb-4 text-center">
-                Join the Bedside to Business Challenge Waitlist
-              </h2>
-              <p className="text-base sm:text-lg text-white/80 mb-6 sm:mb-8 text-center">
-                Be the first to know when the next 3-day intensive challenge launches. Limited spots available—secure your place now.
+    <Section variant="default" id="lead-form" watermark="08" withVignette padding="normal">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl overflow-hidden border border-[rgba(248,244,233,0.06)]">
+          {/* LEFT: Founder photo with editorial overlay */}
+          <motion.div
+            className="lg:col-span-5 relative"
+            {...ceAnimations.slideLeft}
+          >
+            {/* Photo container - shorter on mobile, full height on desktop */}
+            <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full min-h-[300px]">
+              <Image
+                src="/timi-abiola.jpg"
+                alt="Timi Abiola - AI &amp; Informatics Expert"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover opacity-90"
+                priority
+              />
+
+              {/* Bottom gradient overlay for text */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#120925] via-[#120925]/60 to-transparent" />
+
+              {/* Editorial CTA text overlaid on photo */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 z-10">
+                {/* Folio */}
+                <span className="ce-folio block mb-4">Final Chapter</span>
+
+                {/* Headline */}
+                <h2 className="font-serif text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.15] text-[#f8f4e9] mb-6">
+                  Save Your Spot on the Waitlist
+                </h2>
+
+                {/* Trust signals with gold line */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-4 h-px bg-[#e5b94c]/50 flex-shrink-0" />
+                    <span className="text-sm text-[#f8f4e9]/70">No commitment required</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-4 h-px bg-[#e5b94c]/50 flex-shrink-0" />
+                    <span className="text-sm text-[#f8f4e9]/70">Early-bird pricing access</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-4 h-px bg-[#e5b94c]/50 flex-shrink-0" />
+                    <span className="text-sm text-[#f8f4e9]/70">First to know when doors open</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT: Form */}
+          <motion.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="bg-[#1a0f32] p-6 sm:p-8 lg:p-10 h-full border-l-0 lg:border-l-2 lg:border-[#e5b94c]/20">
+              <p className="text-base sm:text-lg text-[#f8f4e9]/70 mb-6 sm:mb-8">
+                Be the first to know when the next challenge opens. No commitment, just first access and early-bird pricing.
               </p>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                 {/* First Name and Last Name */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-[#FFF6D6] text-base">
+                    <Label htmlFor="firstName" className="text-[#f8f4e9] text-base">
                       First Name*
                     </Label>
                     <Input
                       id="firstName"
                       type="text"
                       placeholder="John"
-                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20 h-12 text-base"
+                      autoComplete="given-name"
+                      className="bg-[rgba(255,255,255,0.03)] border-[rgba(248,244,233,0.1)] text-[#f8f4e9] placeholder:text-[#f8f4e9]/30 focus:border-[#e5b94c] focus:ring-[#e5b94c]/20 h-12 text-base"
                       {...register('firstName')}
                     />
                     {errors.firstName && (
-                      <p className="text-sm text-[#FF2C6D]">{errors.firstName.message}</p>
+                      <p className="text-sm text-red-400">{errors.firstName.message}</p>
                     )}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-[#FFF6D6] text-base">
+                    <Label htmlFor="lastName" className="text-[#f8f4e9] text-base">
                       Last Name*
                     </Label>
                     <Input
                       id="lastName"
                       type="text"
                       placeholder="Doe"
-                      className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20 h-12 text-base"
+                      autoComplete="family-name"
+                      className="bg-[rgba(255,255,255,0.03)] border-[rgba(248,244,233,0.1)] text-[#f8f4e9] placeholder:text-[#f8f4e9]/30 focus:border-[#e5b94c] focus:ring-[#e5b94c]/20 h-12 text-base"
                       {...register('lastName')}
                     />
                     {errors.lastName && (
-                      <p className="text-sm text-[#FF2C6D]">{errors.lastName.message}</p>
+                      <p className="text-sm text-red-400">{errors.lastName.message}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Email */}
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-[#FFF6D6] text-base">
+                  <Label htmlFor="email" className="text-[#f8f4e9] text-base">
                     Your Email Address*
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="your@email.com"
-                    className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
+                    autoComplete="email"
+                    inputMode="email"
+                    className="bg-[rgba(255,255,255,0.03)] border-[rgba(248,244,233,0.1)] text-[#f8f4e9] placeholder:text-[#f8f4e9]/30 focus:border-[#e5b94c] focus:ring-[#e5b94c]/20 h-12 text-base"
                     {...register('email')}
                   />
                   {errors.email && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.email.message}</p>
+                    <p className="text-sm text-red-400">{errors.email.message}</p>
                   )}
                 </div>
 
                 {/* LinkedIn Profile URL */}
                 <div className="space-y-2">
-                  <Label htmlFor="linkedinUrl" className="text-[#FFF6D6] text-base">
-                    LinkedIn Profile URL
+                  <Label htmlFor="linkedinUrl" className="text-[#f8f4e9] text-base">
+                    LinkedIn Profile URL (optional)
                   </Label>
                   <Input
                     id="linkedinUrl"
                     type="url"
                     placeholder="https://www.linkedin.com/in/yourprofile"
-                    className="bg-[#0B3142]/50 border-[#3EC6FF]/30 text-white placeholder:text-white/50 focus:border-[#00F0FF] focus:ring-[#00F0FF]/20"
+                    className="bg-[rgba(255,255,255,0.03)] border-[rgba(248,244,233,0.1)] text-[#f8f4e9] placeholder:text-[#f8f4e9]/30 focus:border-[#e5b94c] focus:ring-[#e5b94c]/20"
                     {...register('linkedinUrl')}
                   />
+                  <p className="text-xs text-[#f8f4e9]/40">Helps us personalize your challenge experience</p>
                   {errors.linkedinUrl && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.linkedinUrl.message}</p>
+                    <p className="text-sm text-red-400">{errors.linkedinUrl.message}</p>
                   )}
                 </div>
 
                 {/* Business Reason */}
                 <div className="space-y-3">
-                  <Label className="text-[#FFF6D6] text-base">
+                  <Label className="text-[#f8f4e9] text-base">
                     Why do you want to start a business?*
                   </Label>
                   <RadioGroup
@@ -261,48 +311,48 @@ export function LeadCaptureSection() {
                     }}
                     className="space-y-3"
                   >
-                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
-                      <RadioGroupItem value="experience-income" id="reason-1" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(248,244,233,0.08)] hover:border-[#e5b94c]/30 transition-colors duration-400">
+                      <RadioGroupItem value="experience-income" id="reason-1" className="mt-0.5 border-[#e5b94c]/40 text-[#e5b94c]" />
                       <Label
                         htmlFor="reason-1"
-                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                        className="text-sm sm:text-base text-[#f8f4e9]/80 cursor-pointer leading-relaxed font-normal"
                       >
                         I want to use my experience, skills and knowledge to create a new income source.
                       </Label>
                     </div>
 
-                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
-                      <RadioGroupItem value="side-hustle" id="reason-2" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(248,244,233,0.08)] hover:border-[#e5b94c]/30 transition-colors duration-400">
+                      <RadioGroupItem value="side-hustle" id="reason-2" className="mt-0.5 border-[#e5b94c]/40 text-[#e5b94c]" />
                       <Label
                         htmlFor="reason-2"
-                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                        className="text-sm sm:text-base text-[#f8f4e9]/80 cursor-pointer leading-relaxed font-normal"
                       >
                         I want to supplement my employment income by developing a side hustle.
                       </Label>
                     </div>
 
-                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
-                      <RadioGroupItem value="replace-income" id="reason-3" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(248,244,233,0.08)] hover:border-[#e5b94c]/30 transition-colors duration-400">
+                      <RadioGroupItem value="replace-income" id="reason-3" className="mt-0.5 border-[#e5b94c]/40 text-[#e5b94c]" />
                       <Label
                         htmlFor="reason-3"
-                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                        className="text-sm sm:text-base text-[#f8f4e9]/80 cursor-pointer leading-relaxed font-normal"
                       >
                         I want to build a business that will replace my employment income and allow me to leave my job.
                       </Label>
                     </div>
 
-                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[#0B3142]/30 border border-[#3EC6FF]/20 hover:border-[#00F0FF]/40 transition-colors">
-                      <RadioGroupItem value="personal-brand" id="reason-4" className="mt-0.5 border-[#3EC6FF] text-[#00F0FF]" />
+                    <div className="flex items-start space-x-3 p-3 rounded-lg bg-[rgba(255,255,255,0.02)] border border-[rgba(248,244,233,0.08)] hover:border-[#e5b94c]/30 transition-colors duration-400">
+                      <RadioGroupItem value="personal-brand" id="reason-4" className="mt-0.5 border-[#e5b94c]/40 text-[#e5b94c]" />
                       <Label
                         htmlFor="reason-4"
-                        className="text-sm sm:text-base text-white/90 cursor-pointer leading-relaxed font-normal"
+                        className="text-sm sm:text-base text-[#f8f4e9]/80 cursor-pointer leading-relaxed font-normal"
                       >
                         I want to develop and build my Personal Brand online through offers that add value and social media presence.
                       </Label>
                     </div>
                   </RadioGroup>
                   {errors.businessReason && (
-                    <p className="text-sm text-[#FF2C6D]">{errors.businessReason.message}</p>
+                    <p className="text-sm text-red-400">{errors.businessReason.message}</p>
                   )}
                 </div>
 
@@ -320,19 +370,22 @@ export function LeadCaptureSection() {
                         Sending...
                       </>
                     ) : (
-                      "Join the Waitlist →"
+                      "Join the Waitlist \u2192"
                     )}
                   </Button>
                 </div>
 
                 {/* Privacy Notice */}
-                <p className="text-sm text-white/60 text-center">
-                  🔒 Your information is 100% secure. Limited spots available. Join the waitlist to be notified when registration opens.
+                <p className="text-sm text-[#f8f4e9]/50 text-center">
+                  No spam, no sharing. Just one email when the challenge opens.
+                </p>
+                <p className="text-xs text-[#f8f4e9]/40 text-center mt-2">
+                  After you join, you&apos;ll get a confirmation email. We&apos;ll notify you the moment the next challenge opens, including early-bird pricing.
                 </p>
               </form>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </Section>
   )

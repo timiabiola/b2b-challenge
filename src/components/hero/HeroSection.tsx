@@ -1,10 +1,8 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { AnimatedBackground } from './AnimatedBackground'
 import { HERO_CONTENT } from '@/lib/constants'
 
 export function HeroSection() {
@@ -13,91 +11,98 @@ export function HeroSection() {
     formElement?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  // const handleJoinChallenge = () => {
-  //   window.location.href = 'https://buy.stripe.com/eVqaEX83kfdyaCJaIrcAo06'
-  // }
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      <AnimatedBackground />
-      
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Text Content */}
+    <section className="relative min-h-screen flex items-end overflow-hidden bg-[#120925]">
+      {/* Atmospheric radial gradient - replaces orbs */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 20% 80%, rgba(42,19,64,0.5), transparent 60%)',
+        }}
+      />
+
+      {/* Secondary atmospheric glow */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 80% 20%, rgba(229,185,76,0.03), transparent 50%)',
+        }}
+      />
+
+      {/* Vignette */}
+      <div className="ce-vignette" aria-hidden="true" />
+
+      {/* Watermark */}
+      <div className="ce-watermark" aria-hidden="true">01</div>
+
+      {/* Content anchored to bottom-left */}
+      <div className="relative z-10 container mx-auto px-6 pb-20 lg:pb-28 xl:pb-32 max-w-7xl">
+        <div className="max-w-4xl">
+          {/* Folio line */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-6"
           >
-            <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#FFF6D6] mb-4 sm:mb-6 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {HERO_CONTENT.headline}
-            </motion.h1>
-            
-            <motion.p 
-              className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              {HERO_CONTENT.subheadline}
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex justify-center items-center"
-            >
-              {/* <Button
-                size="default"
-                variant="primary"
-                onClick={handleJoinChallenge}
-                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
-              >
-                {HERO_CONTENT.ctaText}
-              </Button> */}
-              <Button
-                size="default"
-                variant="primary"
-                onClick={scrollToForm}
-                className="text-base px-8 py-3 font-semibold h-[64px] w-full sm:w-[280px] flex items-center justify-center"
-              >
-                {HERO_CONTENT.ctaTextSecondary}
-              </Button>
-            </motion.div>
+            <span className="ce-folio">Issue 01 &middot; Bedside to Business</span>
           </motion.div>
-          
-          {/* Image/Visualization */}
+
+          {/* Editorial label */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-4"
           >
-            <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] max-w-sm sm:max-w-lg mx-auto">
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/20 to-[#FF2C6D]/20 rounded-2xl blur-3xl" />
-              
-              {/* Professional image placeholder */}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#3EC6FF]/30">
-                <Image 
-                  src="/timi-abiola.jpg" 
-                  alt="Timi Abiola - AI & Informatics Expert"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                  priority
-                />
-                {/* Gradient overlay at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0B3142] to-transparent z-10" />
-              </div>
-            </div>
+            <span className="ce-label">3-day intensive challenge</span>
+          </motion.div>
+
+          {/* Massive headline with "Stuck" in gold italic */}
+          <motion.h1
+            className="font-serif text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] text-[#f8f4e9] mb-8 tracking-tight"
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            You Didn&apos;t Spend Years at the Bedside to Stay{' '}
+            <em className="text-[#e5b94c] italic">Stuck</em>{' '}
+            There
+          </motion.h1>
+
+          {/* Gold accent line */}
+          <motion.div
+            className="ce-accent-line w-32 mb-8"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformOrigin: 'left' }}
+          />
+
+          {/* Subheadline - narrower column */}
+          <motion.p
+            className="text-lg lg:text-xl text-[#f8f4e9]/75 mb-12 max-w-xl leading-relaxed"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {HERO_CONTENT.subheadline}
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Button
+              size="xl"
+              variant="primary"
+              onClick={scrollToForm}
+              className="text-base px-10 py-4 font-semibold"
+            >
+              {HERO_CONTENT.ctaTextSecondary}
+            </Button>
           </motion.div>
         </div>
       </div>

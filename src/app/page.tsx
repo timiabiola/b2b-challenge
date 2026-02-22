@@ -4,6 +4,7 @@ import { AboutSection } from '@/components/features/AboutSection'
 import { StatsSection } from '@/components/features/StatsSection'
 import { ThreePillarsSection } from '@/components/features/ThreePillarsSection'
 import { ProcessTimelineSection } from '@/components/features/ProcessTimelineSection'
+import { FAQSection } from '@/components/features/FAQSection'
 import { LeadCaptureSection } from '@/components/forms/LeadCaptureSection'
 import { Footer } from '@/components/layout/Footer'
 
@@ -17,6 +18,7 @@ export default function Home() {
         <StatsSection />
         <ThreePillarsSection />
         <ProcessTimelineSection />
+        <FAQSection />
         <LeadCaptureSection />
       </main>
       <Footer />

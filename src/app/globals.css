@@ -3,52 +3,175 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Colors */
-  --deep-navy-blue: #0B3142;
-  --deep-purple: #2B174C;
-  --electric-cyan: #00F0FF;
-  --vibrant-magenta: #FF2C6D;
-  --soft-cream: #FFF6D6;
-  --accent-blue: #3EC6FF;
-  --pure-white: #FFFFFF;
-  --dark-gray: #1A1A1A;
-  
-  /* Default to dark theme */
-  --background: #0B3142;
-  --foreground: #FFFFFF;
+  /* CE Dark Palette */
+  --ce-bg: #120925;
+  --ce-elevated: #1a0f32;
+  --ce-cream: #f8f4e9;
+  --ce-gold: #e5b94c;
+  --ce-plum: #2a1340;
+  --ce-plum-deep: #0d0620;
+  --ce-border: rgba(248, 244, 233, 0.08);
+  --ce-border-hover: rgba(248, 244, 233, 0.15);
+
+  /* Animation tokens */
+  --ce-ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ce-duration-reveal: 0.9s;
+
+  /* shadcn variable overrides */
+  --background: 264 60% 7%;
+  --foreground: 42 50% 94%;
+  --card: 268 52% 13%;
+  --card-foreground: 42 50% 94%;
+  --popover: 268 52% 13%;
+  --popover-foreground: 42 50% 94%;
+  --primary: 42 73% 60%;
+  --primary-foreground: 264 60% 7%;
+  --secondary: 272 48% 16%;
+  --secondary-foreground: 42 50% 94%;
+  --muted: 272 48% 16%;
+  --muted-foreground: 42 20% 70%;
+  --accent: 272 48% 16%;
+  --accent-foreground: 42 50% 94%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 42 50% 94%;
+  --border: 42 10% 20%;
+  --input: 42 10% 20%;
+  --ring: 42 73% 60%;
+  --radius: 0.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--ce-bg);
+  color: var(--ce-cream);
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
 @layer utilities {
-  @keyframes blob {
-    0% {
-      transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-      transform: translate(30px, -50px) scale(1.1);
-    }
-    66% {
-      transform: translate(-20px, 20px) scale(0.9);
-    }
-    100% {
-      transform: translate(0px, 0px) scale(1);
-    }
+  /* Grain texture overlay */
+  .ce-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
   }
-  
-  .animate-blob {
-    animation: blob 7s infinite;
+
+  /* Section watermark numbers */
+  .ce-watermark {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-family: var(--font-fraunces), "Fraunces", Georgia, serif;
+    font-size: clamp(8rem, 15vw, 20rem);
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(248, 244, 233, 0.02);
+    pointer-events: none;
+    user-select: none;
   }
-  
-  .animation-delay-2000 {
-    animation-delay: 2s;
+
+  /* Gold accent line */
+  .ce-accent-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e5b94c, transparent);
+    border: none;
   }
-  
-  .animation-delay-4000 {
-    animation-delay: 4s;
+
+  /* Editorial card style */
+  .ce-card {
+    background: rgba(26, 15, 50, 0.6);
+    border: 1px solid rgba(248, 244, 233, 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 0.75rem;
+    transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ce-card:hover {
+    border-color: rgba(229, 185, 76, 0.2);
+    box-shadow: 0 8px 32px -8px rgba(229, 185, 76, 0.08);
+  }
+
+  /* Small-caps label */
+  .ce-label {
+    font-variant: all-small-caps;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: #e5b94c;
+  }
+
+  /* Pull quote (serif italic) */
+  .ce-pull-quote {
+    font-family: var(--font-fraunces), "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #e5b94c;
+    border-left: 2px solid rgba(229, 185, 76, 0.3);
+    padding-left: 1.25rem;
+  }
+
+  /* Watermark left-aligned variant */
+  .ce-watermark-left {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-family: var(--font-fraunces), "Fraunces", Georgia, serif;
+    font-size: clamp(8rem, 15vw, 20rem);
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(248, 244, 233, 0.02);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Drop cap for editorial paragraphs */
+  .ce-drop-cap::first-letter {
+    font-family: var(--font-fraunces), "Fraunces", Georgia, serif;
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    line-height: 0.85;
+    float: left;
+    color: #e5b94c;
+    margin-right: clamp(0.375rem, 1.5vw, 0.5rem);
+    margin-top: 0.25rem;
+    font-weight: 400;
+  }
+
+  /* Thin editorial rule */
+  .ce-editorial-rule {
+    height: 1px;
+    background: rgba(248, 244, 233, 0.06);
+    width: 100%;
+    border: none;
+  }
+
+  /* Folio (issue/chapter marker) */
+  .ce-folio {
+    font-family: var(--font-fraunces), "Fraunces", Georgia, serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(248, 244, 233, 0.25);
+  }
+
+  /* Vignette overlay */
+  .ce-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 50%, #120925 100%);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
